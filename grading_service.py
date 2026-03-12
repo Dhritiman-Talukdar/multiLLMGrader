@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 from openai import OpenAI
 from pylatexenc.latex2text import LatexNodes2Text
 
+from config import logging
 from storage import s3_presign_url
 
 # Safely import Pydantic to enable Strict Structured Outputs for Gemini
@@ -33,6 +34,7 @@ try:
 except ImportError:
     HAS_PYDANTIC = False
 
+logger = logging.getLogger(__name__)
 
 class LLMGrader:
     """Grades assignment submissions using LLMs with optional diagram (vision) support.
@@ -252,10 +254,10 @@ class LLMGrader:
         flattened_questions = self._flatten_questions(
             assignment.get("questions", []), "", answered_subquestion_ids
         )
-        print("flattened_questions", json.dumps(flattened_questions, indent=2))
+        logger.info("flattened_questions" + json.dumps(flattened_questions, indent=2))
 
         flattened_answers = self._flatten_answers(submission_answers)
-        print("flattened_answers", json.dumps(flattened_answers, indent=2))
+        logger.info("flattened_answers" + json.dumps(flattened_answers, indent=2))
 
         # Partition questions: deterministic (MCQ/TF) vs LLM-required
         deterministic_questions: List[Dict[str, Any]] = []
@@ -295,7 +297,7 @@ class LLMGrader:
                 "ai_flag": None,  # AI detection removed
             }
 
-        print("feedback_by_question before LLM", feedback_by_question)
+        logger.info("feedback_by_question before LLM" + json.dumps(feedback_by_question, indent=2))
 
         # If there are LLM-required questions, build prompt only for them
         if llm_questions:
@@ -303,8 +305,8 @@ class LLMGrader:
                 llm_questions, flattened_answers
             )
 
-            print("prompt_text", prompt_text)
-            # print("diagram_s3_keys", diagram_s3_keys)
+            logger.info("prompt_text" + json.dumps(prompt_text, indent=2))
+            # logger.info("diagram_s3_keys", diagram_s3_keys)
 
             # Build multimodal messages
             system_msg = {
@@ -330,10 +332,10 @@ class LLMGrader:
                     )
                 except Exception:
                     # If presign fails, proceed without image
-                    print(f"Failed to presign S3 key: {s3_key}")
+                    logger.info(f"Failed to presign S3 key: {s3_key}")
                     pass
 
-            print("user_content", user_content)
+            logger.info("user_content" + json.dumps(user_content, indent=2))
 
             # Use Structured Outputs schema for Gemini if available
             schema = GeminiGradingResponse if HAS_PYDANTIC and self.provider == "gemini" else None
@@ -381,7 +383,7 @@ class LLMGrader:
             # Keep overall feedback from LLM if present
             overall_feedback = overall_feedback_llm or overall_feedback
 
-        print("feedback_by_question after LLM", feedback_by_question)
+        logger.info("feedback_by_question after LLM", feedback_by_question)
 
         # Calculate totals
         total_points = sum(float(q.get("points", 0) or 0) for q in flattened_questions)
@@ -428,9 +430,8 @@ class LLMGrader:
         flattened_questions = self._flatten_questions(
             assignment.get("questions", []), "", {}
         )
-        print(
-            "[grade_pdf_direct] flattened_questions",
-            json.dumps(flattened_questions, indent=2),
+        logger.info(
+            "[grade_pdf_direct] flattened_questions" + json.dumps(flattened_questions, indent=2),
         )
 
         total_points = sum(float(q.get("points", 0) or 0) for q in flattened_questions)
@@ -438,50 +439,75 @@ class LLMGrader:
         # -------------------------------------------------------------------
         # 2. Build the rubric prompt (no student answers — visible in PDF images)
         # -------------------------------------------------------------------
-        if self.provider == "gemini":
-            prompt_parts = [
-                "You are an expert academic grader.\n"
-                "The student's answer sheet is attached below as one image per page.\n"
-                "Grade EVERY question listed below by locating the student's written answer "
-                "in the images. FIRST write out your step-by-step reasoning, THEN score.\n\n"
-                "Return ONLY a JSON object with this exact structure:\n"
-                "{\n"
-                '  "grades": [\n'
-                '    {\n'
-                '      "question_id": "<id>",\n'
-                '      "reasoning": "<step-by-step logic against rubric>",\n'
-                '      "score": <float in [0, max_points]>,\n'
-                '      "strengths": "<brief strengths>",\n'
-                '      "areas_for_improvement": "<areas to improve>",\n'
-                '      "breakdown": "<detailed analysis>"\n'
-                '    }\n'
-                '  ],\n'
-                '  "overall_feedback": "<overall assessment>"\n'
-                "}\n\n"
-                "Grade strictly according to the rubric and max points for each question.\n"
-                "If a question is not answered in the PDF, assign 0 points.\n\n"
-                "--- QUESTIONS, REFERENCE ANSWERS & RUBRICS ---\n",
-            ]
-        else:
-            prompt_parts = [
-                "You are an expert academic grader.\n"
-                "The student's answer sheet is attached below as one image per page.\n"
-                "Grade EVERY question listed below by locating the student's written answer "
-                "in the images.\n\n"
-                "Return ONLY a JSON object with this exact structure:\n"
-                "{\n"
-                '  "question_<id>": {\n'
-                '    "score": <float in [0, max_points]>,\n'
-                '    "strengths": "<brief strengths>",\n'
-                '    "areas_for_improvement": "<areas to improve>",\n'
-                '    "breakdown": "<detailed analysis>"\n'
-                "  },\n"
-                '  "overall_feedback": "<overall assessment>"\n'
-                "}\n\n"
-                "Grade strictly according to the rubric and max points for each question.\n"
-                "If a question is not answered in the PDF, assign 0 points.\n\n"
-                "--- QUESTIONS, REFERENCE ANSWERS & RUBRICS ---\n",
-            ]
+        # if self.provider == "gemini":
+        #     prompt_parts = [
+        #         "You are an expert academic grader.\n"
+        #         "The student's answer sheet is attached below as one image per page.\n"
+        #         "Grade EVERY question listed below by locating the student's written answer "
+        #         "in the images. FIRST write out your step-by-step reasoning, THEN score.\n\n"
+        #         "Return ONLY a JSON object with this exact structure:\n"
+        #         "{\n"
+        #         '  "grades": [\n'
+        #         '    {\n'
+        #         '      "question_id": "<id>",\n'
+        #         '      "reasoning": "<step-by-step logic against rubric>",\n'
+        #         '      "score": <float in [0, max_points]>,\n'
+        #         '      "strengths": "<brief strengths>",\n'
+        #         '      "areas_for_improvement": "<areas to improve>",\n'
+        #         '      "breakdown": "<detailed analysis>"\n'
+        #         '    }\n'
+        #         '  ],\n'
+        #         '  "overall_feedback": "<overall assessment>"\n'
+        #         "}\n\n"
+        #         "Grade strictly according to the rubric and max points for each question.\n"
+        #         "If a question is not answered in the PDF, assign 0 points.\n\n"
+        #         "--- QUESTIONS, REFERENCE ANSWERS & RUBRICS ---\n",
+        #     ]
+        # else:
+        #     prompt_parts = [
+        #         "You are an expert academic grader.\n"
+        #         "The student's answer sheet is attached below as one image per page.\n"
+        #         "Grade EVERY question listed below by locating the student's written answer "
+        #         "in the images.\n\n"
+        #         "Return ONLY a JSON object with this exact structure:\n"
+        #         "{\n"
+        #         '  "question_<id>": {\n'
+        #         '    "score": <float in [0, max_points]>,\n'
+        #         '    "strengths": "<brief strengths>",\n'
+        #         '    "areas_for_improvement": "<areas to improve>",\n'
+        #         '    "breakdown": "<detailed analysis>"\n'
+        #         "  },\n"
+        #         '  "overall_feedback": "<overall assessment>"\n'
+        #         "}\n\n"
+        #         "Grade strictly according to the rubric and max points for each question.\n"
+        #         "If a question is not answered in the PDF, assign 0 points.\n\n"
+        #         "--- QUESTIONS, REFERENCE ANSWERS & RUBRICS ---\n",
+        #     ]
+
+        prompt_parts = [
+            "You are an expert academic grader.\n"
+            "The student's answer sheet is attached below as one image per page.\n"
+            "Grade EVERY question listed below by locating the student's written answer "
+            "in the images. FIRST write out your step-by-step reasoning, THEN score.\n\n"
+            "Return ONLY a JSON object with this exact structure:\n"
+            "{\n"
+            '  "grades": [\n'
+            '    {\n'
+            '      "question_id": "<id (the question id e.g., 1, 2.1, 2.1.3)>",\n'
+            '      "reasoning": "<step-by-step logic against rubric>",\n'
+            '      "score": <float in [0, max_points]>,\n'
+            '      "strengths": "<brief strengths>",\n'
+            '      "areas_for_improvement": "<areas to improve>",\n'
+            '      "breakdown": "<detailed analysis>"\n'
+            '    }\n'
+            '  ],\n'
+            '  "overall_feedback": "<overall assessment>"\n'
+            "}\n\n"
+            "Grade strictly according to the rubric and max points for each question.\n"
+            "If a question is not answered in the PDF, assign 0 points.\n\n"
+            "--- QUESTIONS, REFERENCE ANSWERS & RUBRICS ---\n",
+        ]
+
 
         for q in flattened_questions:
             q_id = str(q.get("id"))
@@ -506,7 +532,7 @@ class LLMGrader:
             prompt_parts.append("")  # blank line between questions
 
         prompt_text = "\n".join(prompt_parts)
-        print("[grade_pdf_direct] prompt_text", prompt_text)
+        logger.info("[grade_pdf_direct] prompt_text" + prompt_text)
 
         # -------------------------------------------------------------------
         # 3. Download PDF from S3 — native doc for Anthropic, page images for others
@@ -519,7 +545,7 @@ class LLMGrader:
         if self.provider == "anthropic":
             # Send the raw PDF directly — Claude handles text + visual extraction natively
             b64_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
-            print(f"[grade_pdf_direct] using Anthropic native PDF support ({len(pdf_bytes)} bytes)")
+            logger.info(f"[grade_pdf_direct] using Anthropic native PDF support ({len(pdf_bytes)} bytes)")
             # Anthropic recommends placing the document BEFORE the text prompt
             page_parts: List[Dict[str, Any]] = [
                 {"type": "pdf_document", "base64": b64_pdf}
@@ -533,7 +559,7 @@ class LLMGrader:
                     tmp_pdf_path = tmp_pdf.name
 
                 pages = convert_from_path(tmp_pdf_path, dpi=200)
-                print(f"[grade_pdf_direct] converted {len(pages)} PDF pages to images")
+                logger.info(f"[grade_pdf_direct] converted {len(pages)} PDF pages to images")
 
                 page_parts = []
                 for page_idx, page_img in enumerate(pages):
@@ -544,7 +570,7 @@ class LLMGrader:
                     page_parts.append(
                         {"type": "image_url", "image_url": {"url": data_url}}
                     )
-                    print(f"[grade_pdf_direct] encoded page {page_idx + 1}")
+                    logger.info(f"[grade_pdf_direct] encoded page {page_idx + 1}")
             finally:
                 if tmp_pdf_path and os.path.exists(tmp_pdf_path):
                     os.remove(tmp_pdf_path)
@@ -567,7 +593,7 @@ class LLMGrader:
         else:
             user_content = [{"type": "text", "text": prompt_text}] + page_parts
 
-        print(
+        logger.info(
             f"[grade_pdf_direct] making LLM call ({self.provider}, {len(page_parts)} content part(s))"
         )
 
@@ -583,8 +609,8 @@ class LLMGrader:
         )
         end_time = time.time()
         time_taken = end_time - start_time
-        print(f"[grade_pdf_direct] LLM call duration: {end_time - start_time:.2f} seconds")
-        print("[grade_pdf_direct] raw LLM response", result_text)
+        logger.info(f"[grade_pdf_direct] LLM call duration: {time_taken:.2f} seconds")
+        logger.info("[grade_pdf_direct] raw LLM response: " + json.dumps(result_text, indent=2))
 
         # -------------------------------------------------------------------
         # 5. Parse response and compute totals
@@ -595,9 +621,8 @@ class LLMGrader:
 
         total_score = sum(fb.get("score", 0.0) for fb in feedback_by_question.values())
 
-        print(
-            f"[grade_pdf_direct] result: {total_score}/{total_points}",
-            json.dumps(feedback_by_question, indent=2),
+        logger.info(
+            f"[grade_pdf_direct] result: {total_score}/{total_points}" + json.dumps(feedback_by_question, indent=2)
         )
 
         return total_score, total_points, feedback_by_question, overall_feedback, time_taken
@@ -618,7 +643,7 @@ class LLMGrader:
                 # Replace equation placeholders with LaTeX representation
                 placeholder = f"<eq {eq_id}>"
                 replacement = f"{eq_text}"
-                print(
+                logger.info(
                     f"[_sanitize_text_for_prompt] Replacing equation placeholder {placeholder} with {replacement}"
                 )
                 text = text.replace(placeholder, replacement)
@@ -1170,8 +1195,21 @@ class LLMGrader:
         overall_feedback = ""
 
         try:
+            import re as _re
+            # Strip markdown code fences and leading/trailing prose before parsing
+            clean_text = response_text
+            md_match = _re.search(r'```(?:json)?\s*([\s\S]*?)\s*```', clean_text)
+            if md_match:
+                clean_text = md_match.group(1)
+            else:
+                # Fall back to extracting the outermost JSON object
+                first_brace = clean_text.find('{')
+                last_brace = clean_text.rfind('}')
+                if first_brace != -1 and last_brace != -1:
+                    clean_text = clean_text[first_brace:last_brace + 1]
+
             # Try to parse as JSON
-            response_data = json.loads(response_text)
+            response_data = json.loads(clean_text)
 
             # Handle structured Gemini 'grades' array safely
             if "grades" in response_data and isinstance(response_data["grades"], list):
