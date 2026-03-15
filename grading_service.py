@@ -344,18 +344,26 @@ class LLMGrader:
             # For grading, we want to allow as much response as possible to get detailed feedback, so we'll use max tokens for all providers. The main constraint is the model's overall context window, which should be sufficient given our prompt and expected response size.
             max_tokens_to_use = 8192
 
-            # Make single LLM call
+            # Make LLM call, retrying for Gemini if response appears truncated
+            _MAX_GEMINI_RETRIES = 5
             start_time = time.time()
-            result_text = self._call_llm(
-                system_content=system_msg["content"],
-                user_content=user_content,
-                temperature=0.1,
-                max_tokens=max_tokens_to_use,
-                response_schema=None,
-            )
+            for attempt in range(_MAX_GEMINI_RETRIES if self.provider == "gemini" else 1):
+                result_text = self._call_llm(
+                    system_content=system_msg["content"],
+                    user_content=user_content,
+                    temperature=0.1,
+                    max_tokens=max_tokens_to_use,
+                    response_schema=None,
+                )
+                if self.provider == "gemini" and "[/OVERALL]" not in result_text and attempt < _MAX_GEMINI_RETRIES - 1:
+                    logger.warning(
+                        f"Gemini response appears truncated (missing [/OVERALL]) on attempt {attempt + 1}. Retrying..."
+                    )
+                    continue
+                break
             end_time = time.time()
             time_taken = end_time - start_time
-            
+
             logger.info(f"Raw LLM response: {result_text}")
             logger.info(f"LLM call duration: {time_taken:.2f} seconds")
 
