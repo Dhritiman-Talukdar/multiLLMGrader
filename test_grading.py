@@ -39,13 +39,13 @@ def test_grading():
         assignment_dict = json.load(f)
 
     models_to_test = [
-        # "gpt-5",
-        # "gpt-4o",
-        # "global.anthropic.claude-opus-4-6-v1",
-        # "global.anthropic.claude-sonnet-4-6",
-        # "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+        "gpt-5",
+        "gpt-4o",
+        "global.anthropic.claude-opus-4-6-v1",
+        "global.anthropic.claude-sonnet-4-6",
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0",
         "gemini-2.5-flash",
-        # "gemini-2.5-pro",
+        "gemini-2.5-pro",
     ]
 
     # Store results keyed by student_id
@@ -54,8 +54,6 @@ def test_grading():
     for model in models_to_test:
         try:
             for student_id, submission_answers in student_submissions.items():
-                if student_id not in ["4"]:
-                    continue
                 for run in range(1, max_runs + 1):
                     grader = LLMGrader(model=model)
                     start_time = time.time()
@@ -94,7 +92,7 @@ def test_grading():
                     "error": str(e),
                 })
 
-    out_dir = "grading_results_only_gemini_flash_34_4"
+    out_dir = "grading_results"
     os.makedirs(out_dir, exist_ok=True)
 
     with open(os.path.join(out_dir, "grading_results.json"), "w") as f:

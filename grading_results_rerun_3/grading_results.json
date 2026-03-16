@@ -1,0 +1,366 @@
+{
+    "1": [],
+    "10": [],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": [],
+    "15": [],
+    "16": [],
+    "17": [],
+    "18": [],
+    "19": [],
+    "2": [],
+    "20": [],
+    "21": [],
+    "22": [],
+    "23": [],
+    "24": [],
+    "25": [],
+    "26": [],
+    "27": [],
+    "28": [],
+    "29": [],
+    "3": [],
+    "30": [],
+    "31": [],
+    "32": [
+        {
+            "model": "gemini-2.5-flash",
+            "run": 1,
+            "total_score": 110.0,
+            "total_points": 133.0,
+            "feedback_by_question": {
+                "1": {
+                    "score": 19.0,
+                    "max_points": 19.0,
+                    "strengths": "Accurate calculations for all scenarios; clear explanation of SJF reordering and FIFO order adherence.",
+                    "areas_for_improvement": "None.",
+                    "breakdown": "Reasoning: Student correctly computes initial RT/TT for both policies, then accurately explains how SJF results remain constant and FIFO results change with reordered jobs, providing correct calculations and reasons.\n\nInitial RT/TT for SJF/FIFO (100,200,300) are correct (implicitly covered by full explanation). SJF behavior with reordered jobs (300,200,100) is correctly explained and calculated (9.5 points). FIFO behavior with reordered jobs (300,200,100) is correctly explained and calculated (9.5 points).",
+                    "ai_flag": null
+                },
+                "2": {
+                    "score": 16.0,
+                    "max_points": 16.0,
+                    "strengths": "Correctly identifies the register value change and the instruction causing it.",
+                    "areas_for_improvement": "None.",
+                    "breakdown": "Reasoning: The student correctly identifies that %dx becomes -1 on the `sub` instruction and remains -1, leading to the program halting.\n\nThe explanation accurately describes the state of %dx throughout the execution, matching the reference answer's logic.",
+                    "ai_flag": null
+                },
+                "3": {
+                    "score": 15.0,
+                    "max_points": 15.0,
+                    "strengths": "Clear explanation of the global lock bottleneck and detailed performance comparisons.",
+                    "areas_for_improvement": "None.",
+                    "breakdown": "Reasoning: The student correctly identifies the main problem and accurately compares performance against `vector-global-order` and `vector-try-wait` for both `-p` and no `-p` flags.\n\nMain problem (coarse global lock, decreased concurrency) is correct (5 points). Comparison with `vector-global-order` (both -p and no -p) is correct (5 points). Comparison with `vector-try-wait` (both -p and no -p) is correct (5 points).",
+                    "ai_flag": null
+                },
+                "4": {
+                    "score": 16.0,
+                    "max_points": 16.0,
+                    "strengths": "Correct final answer for total time units.",
+                    "areas_for_improvement": "Could provide a brief breakdown of how the time units are accumulated for each process.",
+                    "breakdown": "Reasoning: The student correctly states the total time units required to complete both processes.\n\nThe answer \"10 units of time\" is correct, aligning with the reference answer's detailed breakdown (4 CPU + 5 I/O + 1 DONE tick).",
+                    "ai_flag": null
+                },
+                "5": {
+                    "score": 9.0,
+                    "max_points": 27.0,
+                    "strengths": "Correctly identifies that the producer fills the buffer when the consumer sleeps.",
+                    "areas_for_improvement": "Explain how larger buffers allow producers/consumers to work longer before waiting. Correct `num_full` behavior with larger buffers and consumer sleep.",
+                    "breakdown": "Reasoning: The student incorrectly states the code behavior won't change with larger buffers and that `num_full` is always 0 and 1. The prediction for consumer sleep is partially correct.\n\n\"Behavior will not change\" is incorrect (0/9 points). \"num_full always is 0 and 1\" is incorrect (0/9 points). \"When the consumer sleep, the producer will fill up the whole buffer\" is correct for the specific sleep scenario (9/9 points).",
+                    "ai_flag": null
+                },
+                "6": {
+                    "score": 35.0,
+                    "max_points": 40.0,
+                    "strengths": "Most translations are accurate, demonstrating a good understanding of the process.",
+                    "areas_for_improvement": "Double-check final physical address and value calculations, especially hexadecimal conversions.",
+                    "breakdown": "Reasoning: The student correctly translates 6 out of 8 virtual addresses. Two addresses have minor errors in the final physical address or value.\n\n*   5a23: Correct (7 points)\n*   14ab: Correct (7 points)\n*   257e: Correct (7 points)\n*   7988: Correct (7 points)\n*   75cf: Physical Address 0x2f is missing a leading zero (should be 0x02f), Value 18 is incorrect (should be 07). (3 points for partial procedure)\n*   3350: Correct (7 points)\n*   0a70: Physical Address 0xf0 is missing a leading zero (should be 0x0f0). (3 points for partial procedure)\n*   55f9: Correct (7 points)\nTotal: 7*6 + 3*2 = 42 + 6 = 48. Wait, rubric says 7 points for correct, 2-3 for partial. Max 40.\nLet's re-score based on 5 points per address.\n*   5a23: Correct (5 points)\n*   14ab: Correct (5 points)\n*   257e: Correct (5 points)\n*   7988: Correct (5 points)\n*   75cf: PA is 0x02f, student has 0x2f (minor hex error). Value is 07, student has 18 (incorrect). (2.5 points for partial)\n*   3350: Correct (5 points)\n*   0a70: PA is 0x0f0, student has 0xf0 (minor hex error). Value is 1e, student has 1e (correct). (3.5 points for partial)\n*   55f9: Correct (5 points)\nTotal: 5*6 + 2.5 + 3.5 = 30 + 6 = 36 points.\nLet's use the rubric's 7 points for correct, 2-3 for partial.\n*   5a23: Correct (7 points)\n*   14ab: Correct (7 points)\n*   257e: Correct (7 points)\n*   7988: Correct (7 points)\n*   75cf: PA minor error, Value incorrect. (2 points)\n*   3350: Correct (7 points)\n*   0a70: PA minor error, Value correct. (3 points)\n*   55f9: Correct (7 points)\nTotal: 7*6 + 2 + 3 = 42 + 5 = 47. Still over 40.\n\nThe rubric states \"8 virtual address, each address for 5 points\". Then \"For each address, if the answer 'final physical address it translates to' or 'write down that it is a fault' correctly (7 points)\". This is contradictory. I will use the \"5 points for each address\" as the base, and then apply the \"7 points\" for fully correct, and \"2-3 points\" for partially correct. This implies the max points per address is 7, not 5. So 8 * 7 = 56 points, but max is 40. This rubric is confusing.\n\nI will interpret \"8 virtual address, each address for 5 points\" as the primary scoring, making the total 40 points.\nThen, \"For each address, if the answer 'final physical address it translates to' or 'write down that it is a fault' correctly (7 points)\" means if it's fully correct, it gets full points (which is 5 points per address, not 7, to stay within 40 max). \"If the answer is partially correct but has detailed procedures, can give 2~3 points.\"\n\nLet's re-score with 5 points max per address.\n*   5a23: Correct (5 points)\n*   14ab: Correct (5 points)\n*   257e: Correct (5 points)\n*   7988: Correct (5 points)\n*   75cf: PA minor error, Value incorrect. (2 points)\n*   3350: Correct (5 points)\n*   0a70: PA minor error, Value correct. (3 points)\n*   55f9: Correct (5 points)\nTotal: 5*6 + 2 + 3 = 30 + 5 = 35 points. This fits the max points.",
+                    "ai_flag": null
+                }
+            },
+            "overall_feedback": "The student demonstrated a strong understanding of scheduling algorithms, register tracing, and memory management concepts. Most answers were accurate and well-explained, with detailed calculations where required. Minor errors were present in one question regarding buffer behavior and a few address translations.",
+            "llm_call_time_taken": 21.85561203956604,
+            "total_time_taken": 21.858644485473633
+        },
+        {
+            "model": "gemini-2.5-flash",
+            "run": 2,
+            "total_score": 98.5,
+            "total_points": 133.0,
+            "feedback_by_question": {
+                "1": {
+                    "score": 19.0,
+                    "max_points": 19.0,
+                    "strengths": "Accurate calculations for all scenarios; correctly identified policy behaviors.",
+                    "areas_for_improvement": "None.",
+                    "breakdown": "Reasoning: Student correctly calculated response and turnaround times for both policies in initial and changed orders, identifying SJF's invariance and FIFO's variability.\n\nInitial order calculations (SJF/FIFO): 13/13. SJF order change observation: 3/3. FIFO order change observation: 3/3.",
+                    "ai_flag": null
+                },
+                "2": {
+                    "score": 16.0,
+                    "max_points": 16.0,
+                    "strengths": "Clear, step-by-step explanation of register %dx behavior.",
+                    "areas_for_improvement": "None.",
+                    "breakdown": "Reasoning: Student accurately described the register's value change from 0 to -1 and the program's flow, including the jump condition.\n\nCorrectly identified %dx change, jump condition, and final state.",
+                    "ai_flag": null
+                },
+                "3": {
+                    "score": 11.5,
+                    "max_points": 15.0,
+                    "strengths": "Good comparison to vector-try-wait; correctly identified global lock bottleneck for parallelism.",
+                    "areas_for_improvement": "Clarify main problem (global lock contention); refine \"without -p\" comparison to global-order (closer performance).",
+                    "breakdown": "Reasoning: Student partially identified the main problem and provided mostly accurate performance comparisons, though with minor inaccuracies for \"without -p\" global-order.\n\nMain problem: 2.5/5. Without -p comparison: 4/5. With -p comparison: 5/5.",
+                    "ai_flag": null
+                },
+                "4": {
+                    "score": 8.0,
+                    "max_points": 16.0,
+                    "strengths": "Correct final answer for total time.",
+                    "areas_for_improvement": "Include detailed explanation of time units for each process and context switches.",
+                    "breakdown": "Reasoning: Student provided the correct total completion time but omitted the required explanation/breakdown of how that time is reached.\n\nCorrect total time: 8/16. Explanation missing: 0/16.",
+                    "ai_flag": null
+                },
+                "5": {
+                    "score": 9.0,
+                    "max_points": 27.0,
+                    "strengths": "Correctly predicted num_full behavior when consumer sleeps.",
+                    "areas_for_improvement": "Understand how larger buffers affect producer/consumer concurrency; clarify num_full for varying buffer sizes.",
+                    "breakdown": "Reasoning: Student incorrectly described buffer behavior and num_full for larger buffers, but correctly predicted num_full with consumer sleep.\n\nBuffer behavior: 0/9. Num_full (buffer size): 0/9. Num_full (consumer sleep): 9/9.",
+                    "ai_flag": null
+                },
+                "6": {
+                    "score": 35.0,
+                    "max_points": 40.0,
+                    "strengths": "Most translations are accurate, demonstrating understanding of the process.",
+                    "areas_for_improvement": "Double-check calculations, especially for PTE index and final physical address/value.",
+                    "breakdown": "Reasoning: Student correctly translated most virtual addresses, but made a significant error for one address, likely due to following a flawed reference.\n\n5a23: 5/5. 14ab: 4/5. 257e: 5/5. 7988: 5/5. 75cf: 1/5. 3350: 5/5. 0a70: 5/5. 55f9: 5/5.",
+                    "ai_flag": null
+                }
+            },
+            "overall_feedback": "The student demonstrated strong understanding in scheduling and basic assembly tracing. Performance comparison knowledge was mostly good, but lacked precision on one aspect. Paging translations were largely accurate, though one significant error occurred. The producer/consumer question showed a gap in understanding buffer dynamics.",
+            "llm_call_time_taken": 30.843108654022217,
+            "total_time_taken": 30.845728158950806
+        },
+        {
+            "model": "gemini-2.5-flash",
+            "run": 3,
+            "total_score": 106.0,
+            "total_points": 133.0,
+            "feedback_by_question": {
+                "1": {
+                    "score": 19.0,
+                    "max_points": 19.0,
+                    "strengths": "Accurate calculations for all scenarios; correct identification of SJF's order independence and FIFO's order dependence.",
+                    "areas_for_improvement": "None.",
+                    "breakdown": "Reasoning: Student correctly calculates RT/TT for initial order, and for SJF and FIFO with changed order, matching reference values. The explanation for SJF's consistency and FIFO's variability is accurate.\n\nInitial order RT/TT for SJF/FIFO (6.5+6.5=13). SJF order change (3+6.5=9.5). FIFO order change (3+6.5=9.5). Total 19.0 (using case1 rubric, detailed calculations count as explanation).",
+                    "ai_flag": null
+                },
+                "2": {
+                    "score": 16.0,
+                    "max_points": 16.0,
+                    "strengths": "Clear, step-by-step explanation of register value changes and instruction flow.",
+                    "areas_for_improvement": "None.",
+                    "breakdown": "Reasoning: Student correctly explains the register %dx value change from 0 to -1, detailing the `sub`, `test`, and `jgte` instructions' effects.\n\nCorrectly explains dx changes from 0 to -1 due to `sub`, `test` condition, and `jgte` not being taken, leading to halt with -1 (16 points).",
+                    "ai_flag": null
+                },
+                "3": {
+                    "score": 10.0,
+                    "max_points": 15.0,
+                    "strengths": "Correctly identifies performance with parallelism and the global lock bottleneck.",
+                    "areas_for_improvement": "Clarify the main problem (global lock contention) and the \"without -p\" performance comparison to `vector-global-order`.",
+                    "breakdown": "Reasoning: Student partially identifies the main problem and correctly compares performance for the \"with -p\" flag. The \"without -p\" comparison to global-order is incorrect.\n\nMain problem: \"decreases concurrency\" (2.5/5). Without -p: `avoid-hold-and-wait` vs `global-order` incorrect (0/5), vs `try-wait` correct (2.5/5). With -p: `avoid-hold-and-wait` vs `global-order` correct (2.5/5), vs `try-wait` correct (2.5/5). Total 10.0.",
+                    "ai_flag": null
+                },
+                "4": {
+                    "score": 8.0,
+                    "max_points": 16.0,
+                    "strengths": "Correctly identifies one of the possible total time units.",
+                    "areas_for_improvement": "Provide detailed breakdown of time units for each process and how they sum up to the total.",
+                    "breakdown": "Reasoning: Student provides an acceptable total time but lacks the required explanation for how that time is derived for each process.\n\nCorrect total time (8/16). No explanation for the two sub-questions (0/8).",
+                    "ai_flag": null
+                },
+                "5": {
+                    "score": 18.0,
+                    "max_points": 27.0,
+                    "strengths": "Accurate prediction and explanation for `num_full` when consumer sleeps.",
+                    "areas_for_improvement": "Understand how larger buffers impact producer/consumer concurrency and `num_full` fluctuations.",
+                    "breakdown": "Reasoning: Student incorrectly states buffer behavior doesn't change with size. However, the prediction and explanation for `num_full` under specific sleep conditions are correct.\n\nBehavior change with larger buffers: Incorrect (0/9). `num_full` prediction with flags: Correct (9/9). Explanation for prediction: Correct (9/9).",
+                    "ai_flag": null
+                },
+                "6": {
+                    "score": 35.0,
+                    "max_points": 40.0,
+                    "strengths": "Most translations are accurate, including detailed steps.",
+                    "areas_for_improvement": "Double-check fault reasons (e.g., PDE vs PTE) and fetched values.",
+                    "breakdown": "Reasoning: Student correctly translates 6 out of 8 virtual addresses. Two addresses have minor errors in fault reason wording or fetched value.\n\nVA 5a23: Correct (5/5). VA 14ab: Fault reason wording error (2.5/5). VA 257e: Correct (5/5). VA 7988: Correct (5/5). VA 75cf: Value incorrect (2.5/5). VA 3350: Correct (5/5). VA 0a70: Correct (5/5). VA 55f9: Correct (5/5).",
+                    "ai_flag": null
+                }
+            },
+            "overall_feedback": "The student demonstrates a solid understanding of scheduling, basic assembly, and memory paging. Q1 and Q2 were perfectly answered. Q6 showed strong translation skills with minor errors. Q3 and Q5 had some conceptual misunderstandings regarding concurrency and buffer behavior, and Q4 lacked sufficient explanation.",
+            "llm_call_time_taken": 36.041877031326294,
+            "total_time_taken": 36.044487953186035
+        }
+    ],
+    "33": [],
+    "34": [
+        {
+            "model": "gemini-2.5-flash",
+            "run": 1,
+            "total_score": 6.0,
+            "total_points": 133.0,
+            "feedback_by_question": {
+                "1": {
+                    "score": 6.0,
+                    "max_points": 19.0,
+                    "strengths": "Correctly identified the impact of job order on SJF and FIFO policies.",
+                    "areas_for_improvement": "Provide reasons for the observed behavior and compute specific response/turnaround times as requested.",
+                    "breakdown": "Reasoning: Student correctly states SJF order doesn't matter and FIFO order affects results. However, no explanation for why, nor specific response/turnaround times were provided.\n\nStudent earned 3 points for SJF order and 3 points for FIFO order, but missed 6.5 points for reasons in each case.",
+                    "ai_flag": null
+                },
+                "2": {
+                    "score": 0.0,
+                    "max_points": 16.0,
+                    "strengths": "Demonstrated understanding of `sub $1,%dx` instruction's effect.",
+                    "areas_for_improvement": "Carefully read and use the exact arguments provided in the question for simulation.",
+                    "breakdown": "Reasoning: The student answered for different input parameters (-t 2, dx=3) than specified in the question (-t 1, dx=0 default). The explanation of dx value change is incorrect for the given problem.\n\nThe student's answer is based on incorrect initial conditions and number of threads, thus not answering the posed question.",
+                    "ai_flag": null
+                }
+            },
+            "overall_feedback": "",
+            "llm_call_time_taken": 180.38921999931335,
+            "total_time_taken": 180.3912868499756
+        },
+        {
+            "model": "gemini-2.5-flash",
+            "run": 2,
+            "total_score": 73.5,
+            "total_points": 133.0,
+            "feedback_by_question": {
+                "1": {
+                    "score": 6.0,
+                    "max_points": 19.0,
+                    "strengths": "Correctly identified the impact of job order on SJF and FIFO policies.",
+                    "areas_for_improvement": "Provide specific response/turnaround times for both policies and explain the reasons for the observed behavior.",
+                    "breakdown": "Reasoning: Student correctly identified that SJF order doesn't matter and FIFO order does, but missed providing specific response/turnaround times or detailed explanations.\n\n3 points for SJF order, 3 points for FIFO order. Missed 6.5+6.5 for times and 6.5+6.5 for reasons.",
+                    "ai_flag": null
+                },
+                "2": {
+                    "score": 0.0,
+                    "max_points": 16.0,
+                    "strengths": "Provided a detailed trace for the parameters they chose.",
+                    "areas_for_improvement": "Adhere strictly to the specified command-line arguments for the simulation.",
+                    "breakdown": "Reasoning: The student answered for different input parameters (2 threads, dx=3) than specified in the question (1 thread, dx=0 implied by loop.s).\n\nDid not answer the question as posed, using incorrect thread count and initial register value.",
+                    "ai_flag": null
+                },
+                "3": {
+                    "score": 15.0,
+                    "max_points": 15.0,
+                    "strengths": "Clear explanation of the global lock issue and accurate performance comparisons with data.",
+                    "areas_for_improvement": "Ensure numerical comparisons are consistent with general observations (e.g., \"very close\" vs. \"slower\").",
+                    "breakdown": "Reasoning: Student correctly identified the main problem and accurately described performance under both -p and without -p flags, providing supporting data.\n\n5 points for main problem, 5 points for without -p, 5 points for with -p. All correct.",
+                    "ai_flag": null
+                },
+                "4": {
+                    "score": 16.0,
+                    "max_points": 16.0,
+                    "strengths": "Concise and accurate calculation of total time and individual process times.",
+                    "areas_for_improvement": "None.",
+                    "breakdown": "Reasoning: Student correctly identified the total time and provided accurate breakdowns for each process's contribution to the total time.\n\n8 points for total time, 8 points for breakdown explanation. All correct.",
+                    "ai_flag": null
+                },
+                "5": {
+                    "score": 9.0,
+                    "max_points": 27.0,
+                    "strengths": "Understood how buffer size affects synchronization and context switching.",
+                    "areas_for_improvement": "Provide a more precise prediction for `num_full` when the consumer sleeps, relating it to buffer size.",
+                    "breakdown": "Reasoning: Student correctly explained the effect of larger buffers on producer behavior but gave a vague prediction for num_full with consumer sleep.\n\n9 points for buffer behavior. The `num_full` prediction was too general, missing the specific \"close to buffer size\" detail (0 points for this part).",
+                    "ai_flag": null
+                },
+                "6": {
+                    "score": 27.5,
+                    "max_points": 40.0,
+                    "strengths": "Demonstrated understanding of the translation process for several addresses.",
+                    "areas_for_improvement": "Double-check all intermediate calculations (PFN, PTE contents) and final physical address derivations.",
+                    "breakdown": "Reasoning: Student correctly translated 5 out of 8 virtual addresses, but made errors in intermediate steps or final physical addresses for the remaining.\n\nVA 5a23: 2.5 pts (partial). VA 14ab: 5 pts (correct). VA 257e: 5 pts (correct). VA 7988: 2.5 pts (partial). VA 75cf: 0 pts (incorrect). VA 3350: 2.5 pts (partial). VA 0a70: 5 pts (correct). VA 55f9: 5 pts (correct).",
+                    "ai_flag": null
+                }
+            },
+            "overall_feedback": "The student demonstrated a good understanding of some concepts, particularly in Questions 3 and 4. However, there were significant issues in Question 2 due to not following instructions, and in Questions 1 and 5 due to lack of detail or precision. Question 6 showed a mix of correct and incorrect translations, indicating some calculation errors.",
+            "llm_call_time_taken": 69.04543590545654,
+            "total_time_taken": 69.04803562164307
+        },
+        {
+            "model": "gemini-2.5-flash",
+            "run": 3,
+            "total_score": 69.0,
+            "total_points": 133.0,
+            "feedback_by_question": {
+                "1": {
+                    "score": 6.0,
+                    "max_points": 19.0,
+                    "strengths": "Correctly identified the impact of job order on SJF and FIFO policies.",
+                    "areas_for_improvement": "Provide detailed explanations for why job order does or does not affect each policy.",
+                    "breakdown": "Reasoning: Student correctly states SJF order doesn't matter and FIFO order affects results, but provides no explanation for either, missing significant points.\n\nSJF order doesn't matter (3/3). FIFO order affects results (3/3). No reasons provided for either (0/13).",
+                    "ai_flag": null
+                },
+                "2": {
+                    "score": 0.0,
+                    "max_points": 16.0,
+                    "strengths": "Demonstrated ability to run the simulator and interpret output for their chosen parameters.",
+                    "areas_for_improvement": "Adhere strictly to the specified input arguments in the question.",
+                    "breakdown": "Reasoning: The student answered based on modified input arguments (dx=3, 2 threads) instead of the specified arguments (dx=0, 1 thread), leading to an incorrect explanation for the question asked.\n\nAnswered for incorrect initial dx value and thread count (0/16).",
+                    "ai_flag": null
+                },
+                "3": {
+                    "score": 11.0,
+                    "max_points": 15.0,
+                    "strengths": "Accurately described the main problem and performance under high parallelism.",
+                    "areas_for_improvement": "Ensure qualitative performance comparisons align with expected behavior and reference.",
+                    "breakdown": "Reasoning: Student correctly identified the main problem and the performance with the -p flag. The comparison without the -p flag was qualitatively incorrect against the reference.\n\nMain problem (5/5). Without -p flag (1/5 for attempt, but qualitative comparison is incorrect). With -p flag (5/5).",
+                    "ai_flag": null
+                },
+                "4": {
+                    "score": 16.0,
+                    "max_points": 16.0,
+                    "strengths": "Correctly calculated total time and explained the time usage for each process.",
+                    "areas_for_improvement": "None; answer is fully correct.",
+                    "breakdown": "Reasoning: The student correctly identified the total time units and provided accurate breakdowns for both processes, matching the reference answer.\n\nTotal time (8/8). Explanation for Process 0 and Process 1 (8/8).",
+                    "ai_flag": null
+                },
+                "5": {
+                    "score": 8.0,
+                    "max_points": 27.0,
+                    "strengths": "Identified that buffer size affects synchronization and context switching.",
+                    "areas_for_improvement": "Provide more precise predictions for num_full, especially for specific consumer sleep patterns.",
+                    "breakdown": "Reasoning: Student partially explained buffer behavior. The prediction for num_full was vague and did not fully address the two distinct scenarios in the question.\n\nBehavior change with larger buffers (5/9). Prediction for num_full (buffer size/produced items) (0/9). Prediction for num_full (consumer sleep) (3/9).",
+                    "ai_flag": null
+                },
+                "6": {
+                    "score": 28.0,
+                    "max_points": 40.0,
+                    "strengths": "Demonstrated understanding of the translation process for several addresses.",
+                    "areas_for_improvement": "Double-check PFN decimal conversions, PTE contents, and final physical address calculations.",
+                    "breakdown": "Reasoning: Student correctly translated 4 out of 8 virtual addresses. For the others, intermediate steps or final physical addresses were incorrect.\n\nVA 5a23 (2/5). VA 14ab (5/5). VA 257e (5/5). VA 7988 (3/5). VA 75cf (0/5). VA 3350 (3/5). VA 0a70 (5/5). VA 55f9 (5/5).",
+                    "ai_flag": null
+                }
+            },
+            "overall_feedback": "The student demonstrated a good understanding in some areas, particularly Q4 and parts of Q3 and Q6. However, there were significant issues in Q2 due to not following instructions, and Q1 and Q5 lacked depth and precision in explanations and predictions. Q6 had several calculation errors.",
+            "llm_call_time_taken": 97.16790246963501,
+            "total_time_taken": 97.17038035392761
+        }
+    ],
+    "35": [],
+    "36": [],
+    "37": [],
+    "38": [],
+    "39": [],
+    "4": [],
+    "40": [],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": []
+}

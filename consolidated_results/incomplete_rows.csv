@@ -1,0 +1,12 @@
+row_index,student_id,model,run,issues
+206,18,gemini-2.5-flash,3,"missing overall_feedback; missing question feedback for: ['3', '4', '5', '6']"
+226,19,gemini-2.5-flash,2,"missing overall_feedback; missing question feedback for: ['5', '6']"
+454,29,global.anthropic.claude-haiku-4-5-20251001-v1:0,2,"missing question feedback for: ['2', '3', '4', '5', '6']"
+455,29,global.anthropic.claude-haiku-4-5-20251001-v1:0,3,"missing question feedback for: ['2', '3', '4', '5', '6']"
+540,32,gemini-2.5-flash,1,"missing overall_feedback; missing question feedback for: ['2', '3', '4', '5', '6']"
+541,32,gemini-2.5-flash,2,"missing overall_feedback; missing question feedback for: ['3', '4', '5', '6']"
+583,34,gemini-2.5-flash,2,"missing overall_feedback; missing question feedback for: ['3', '4', '5', '6']"
+685,39,global.anthropic.claude-haiku-4-5-20251001-v1:0,2,"missing question feedback for: ['2', '3', '4', '5', '6']"
+709,4,gemini-2.5-flash,2,"missing overall_feedback; missing question feedback for: ['3', '4', '5', '6']"
+710,4,gemini-2.5-flash,3,"missing overall_feedback; missing question feedback for: ['3', '4', '5', '6']"
+792,7,gemini-2.5-flash,1,missing question feedback for: ['6']

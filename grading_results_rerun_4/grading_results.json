@@ -1,0 +1,220 @@
+{
+    "1": [],
+    "10": [],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": [],
+    "15": [],
+    "16": [],
+    "17": [],
+    "18": [],
+    "19": [],
+    "2": [],
+    "20": [],
+    "21": [],
+    "22": [],
+    "23": [],
+    "24": [],
+    "25": [],
+    "26": [],
+    "27": [],
+    "28": [],
+    "29": [],
+    "3": [],
+    "30": [],
+    "31": [],
+    "32": [],
+    "33": [],
+    "34": [
+        {
+            "model": "gemini-2.5-flash",
+            "run": 1,
+            "total_score": 77.0,
+            "total_points": 133.0,
+            "feedback_by_question": {
+                "1": {
+                    "score": 6.0,
+                    "max_points": 19.0,
+                    "strengths": "Correctly identified the impact of job order on SJF and FIFO policies.",
+                    "areas_for_improvement": "Provide specific response/turnaround times for initial job order and explain why order affects FIFO but not SJF.",
+                    "breakdown": "Reasoning: Student correctly identified that SJF order doesn't matter and FIFO order does, but missed computing initial response/turnaround times and explaining the reasons.\n\n3 points for SJF order, 3 points for FIFO order. Missed 13 points for initial calculations and 13 points for explanations.",
+                    "ai_flag": null
+                },
+                "2": {
+                    "score": 0.0,
+                    "max_points": 16.0,
+                    "strengths": "Demonstrated understanding of `dx` decrementing in a loop.",
+                    "areas_for_improvement": "Adhere strictly to the question's parameters (thread count, initial register values) when running simulations and describing results.",
+                    "breakdown": "Reasoning: Student answered for a different scenario (2 threads, dx=3) than specified in the question (1 thread, dx=0 default). The described value change is incorrect for the question's parameters.\n\nAnswered for `-t 2 -a dx=3,dx=3` instead of `-t 1` and default `dx=0`. The expected value change from 0 to -1 was not described.",
+                    "ai_flag": null
+                },
+                "3": {
+                    "score": 15.0,
+                    "max_points": 15.0,
+                    "strengths": "Clear explanation of the global lock issue and accurate performance comparisons with supporting examples.",
+                    "areas_for_improvement": "None.",
+                    "breakdown": "Reasoning: Student correctly identified the main problem and accurately compared performance for both scenarios (with and without -p flag) as per the rubric.\n\n5 points for main problem, 5 points for without -p flag, 5 points for with -p flag. All correct.",
+                    "ai_flag": null
+                },
+                "4": {
+                    "score": 16.0,
+                    "max_points": 16.0,
+                    "strengths": "Accurate calculation of total time and correct explanation of time usage for both CPU and I/O processes.",
+                    "areas_for_improvement": "None.",
+                    "breakdown": "Reasoning: Student correctly computed the total time units and provided an accurate breakdown for each process, matching the reference answer.\n\n8 points for total time, 8 points for breakdown. Both correct.",
+                    "ai_flag": null
+                },
+                "5": {
+                    "score": 12.0,
+                    "max_points": 27.0,
+                    "strengths": "Understood how buffer size affects producer/consumer synchronization.",
+                    "areas_for_improvement": "Provide specific predictions for `num_full` (e.g., \"close to buffer size\") and explain the underlying mechanism for the consumer sleep scenario.",
+                    "breakdown": "Reasoning: Student correctly explained buffer size impact but provided vague answers for `num_full` predictions under specific consumer sleep and item count conditions.\n\n9 points for buffer size impact. 0 points for `num_full` with -m/-l. 3 points for `num_full` with -C sleep (partially correct).",
+                    "ai_flag": null
+                },
+                "6": {
+                    "score": 28.0,
+                    "max_points": 40.0,
+                    "strengths": "Demonstrated understanding of the translation process for several addresses, including identifying fault types.",
+                    "areas_for_improvement": "Double-check calculations for PFNs and final physical addresses. Carefully extract PTE index from virtual addresses.",
+                    "breakdown": "Reasoning: Student correctly translated 4 out of 8 virtual addresses. For 2 addresses, intermediate steps were correct but final physical address was wrong. For 2 addresses, significant errors occurred.\n\n5a23: 2/5 (fault correct, intermediate wrong). 14ab: 5/5. 257e: 5/5. 7988: 3/5 (PA wrong). 75cf: 0/5 (PTE index wrong). 3350: 3/5 (PA wrong). 0a70: 5/5. 55f9: 5/5.",
+                    "ai_flag": null
+                }
+            },
+            "overall_feedback": "The student demonstrated a good understanding of some concepts, particularly in Q3 and Q4. However, there were significant gaps in Q1 (missing calculations/explanations), Q2 (answering a different scenario), and Q5 (vague predictions). Q6 showed mixed accuracy with several calculation errors.",
+            "llm_call_time_taken": 110.89635920524597,
+            "total_time_taken": 110.89969801902771
+        },
+        {
+            "model": "gemini-2.5-flash",
+            "run": 2,
+            "total_score": 86.0,
+            "total_points": 133.0,
+            "feedback_by_question": {
+                "1": {
+                    "score": 6.0,
+                    "max_points": 19.0,
+                    "strengths": "Correctly identified the impact of job order on SJF and FIFO policies.",
+                    "areas_for_improvement": "Provide specific calculations for response/turnaround times and explain *why* order affects FIFO but not SJF.",
+                    "breakdown": "Reasoning: Student correctly states SJF order doesn't matter and FIFO order affects results, but provides no explanation or initial calculations as required by the rubric.\n\n3 points for SJF order, 3 points for FIFO order. Missed 6.5 points for SJF reason, 6.5 points for FIFO reason, and 13 points for initial calculations.",
+                    "ai_flag": null
+                },
+                "2": {
+                    "score": 0.0,
+                    "max_points": 16.0,
+                    "strengths": "Demonstrated understanding of the `sub $1,%dx` instruction's effect.",
+                    "areas_for_improvement": "Carefully read and use the exact command-line arguments provided in the question.",
+                    "breakdown": "Reasoning: The student answered a different question by using incorrect arguments (-t 2 -a dx=3,dx=3) instead of the specified (-t 1 -i 100 -R dx). The initial dx value and thread count are wrong.\n\nThe answer does not match the conditions specified in the question, making it entirely incorrect for the prompt.",
+                    "ai_flag": null
+                },
+                "3": {
+                    "score": 14.0,
+                    "max_points": 15.0,
+                    "strengths": "Clear explanation of the global lock issue and good comparison of performance under different contention levels.",
+                    "areas_for_improvement": "Ensure performance comparisons are precise (e.g., \"very close\" vs \"slower than\" global order without -p).",
+                    "breakdown": "Reasoning: Student correctly identified the main problem and accurately described performance with and without the -p flag, aligning well with the reference answer.\n\n5 points for main problem, 4 points for without -p (minor imprecision), 5 points for with -p.",
+                    "ai_flag": null
+                },
+                "4": {
+                    "score": 16.0,
+                    "max_points": 16.0,
+                    "strengths": "Precise calculation of total time and correct explanation of time units for each process.",
+                    "areas_for_improvement": "None; the answer is complete and accurate.",
+                    "breakdown": "Reasoning: The student correctly identified the total time and provided accurate breakdowns for both processes, matching the reference answer.\n\n8 points for total time, 4 points for Process 0 explanation, 4 points for Process 1 explanation.",
+                    "ai_flag": null
+                },
+                "5": {
+                    "score": 12.0,
+                    "max_points": 27.0,
+                    "strengths": "Correctly described how larger buffers affect producer/consumer synchronization.",
+                    "areas_for_improvement": "Provide a more precise prediction for `num_full` (e.g., buffer becomes full) and explain the consumer sleep model's cycle.",
+                    "breakdown": "Reasoning: Student correctly explained buffer size impact but provided a vague prediction for `num_full` and missed explaining the consumer sleep model.\n\n9 points for buffer behavior. 3 points for `num_full` prediction (vague). 0 points for explaining the model.",
+                    "ai_flag": null
+                },
+                "6": {
+                    "score": 38.0,
+                    "max_points": 40.0,
+                    "strengths": "Demonstrated strong understanding of the translation process and provided detailed steps for each address.",
+                    "areas_for_improvement": "Double-check PFN calculations and ensure correct PTE index extraction from virtual addresses.",
+                    "breakdown": "Reasoning: Student correctly translated 5 out of 8 virtual addresses. For the remaining 3, detailed procedures were provided but contained errors in PFN calculation or PTE index.\n\nVA 5a23: 2 pts (fault correct, but PDE PFN/PTE contents wrong). VA 14ab: 7 pts. VA 257e: 7 pts. VA 7988: 3 pts (PA wrong, procedure correct). VA 75cf: 2 pts (PTE index wrong). VA 3350: 3 pts (PA wrong, procedure correct). VA 0a70: 7 pts. VA 55f9: 7 pts.",
+                    "ai_flag": null
+                }
+            },
+            "overall_feedback": "The student demonstrated a good understanding of most concepts, particularly in Q3, Q4, and Q6. However, Q1 lacked detail and Q2 completely missed the specified parameters. Q5 was partially correct but lacked depth. Attention to detail in question parameters and providing complete explanations are key areas for improvement.",
+            "llm_call_time_taken": 146.30861282348633,
+            "total_time_taken": 146.3110544681549
+        },
+        {
+            "model": "gemini-2.5-flash",
+            "run": 3,
+            "total_score": 73.0,
+            "total_points": 133.0,
+            "feedback_by_question": {
+                "1": {
+                    "score": 6.0,
+                    "max_points": 19.0,
+                    "strengths": "Correctly identified that SJF order doesn't matter and FIFO order does.",
+                    "areas_for_improvement": "Provide specific response/turnaround times and explain the underlying reasons for the observed behavior.",
+                    "breakdown": "Reasoning: Student correctly states the effect of job order on SJF and FIFO policies but does not provide specific times or explanations for why these effects occur.\n\nIdentified SJF order doesn't matter (3/3). Identified FIFO order affects times (3/3). Missed specific times and explanations (0/13).",
+                    "ai_flag": null
+                },
+                "2": {
+                    "score": 0.0,
+                    "max_points": 16.0,
+                    "strengths": "Demonstrated understanding of dx decrementing in a loop.",
+                    "areas_for_improvement": "Adhere strictly to the parameters given in the question (single thread, default dx value).",
+                    "breakdown": "Reasoning: The student answered for a scenario with two threads and an initial dx value of 3, which deviates from the single-thread, default dx=0 parameters specified in the question.\n\nAnswered for incorrect parameters (-t 2, dx=3 instead of -t 1, dx=0).",
+                    "ai_flag": null
+                },
+                "3": {
+                    "score": 13.0,
+                    "max_points": 15.0,
+                    "strengths": "Accurately described the global lock issue and performance with -p flag.",
+                    "areas_for_improvement": "Refine the performance comparison for the non-parallel (-p) case to match reference expectations more closely.",
+                    "breakdown": "Reasoning: Student correctly identified the main problem and the performance under high parallelism. The comparison for the non-parallel case was slightly less precise than the reference.\n\nExplained main problem (5/5). Explained with -p flag (5/5). Explained without -p flag (3/5) due to slight discrepancy in comparison.",
+                    "ai_flag": null
+                },
+                "4": {
+                    "score": 16.0,
+                    "max_points": 16.0,
+                    "strengths": "Correctly calculated total time and provided accurate breakdown for each process.",
+                    "areas_for_improvement": "None.",
+                    "breakdown": "Reasoning: The student correctly identified the total time and accurately explained the time taken by each process as requested.\n\nCorrect total time (8/8). Correct explanation for Process 0 and Process 1 (8/8).",
+                    "ai_flag": null
+                },
+                "5": {
+                    "score": 12.0,
+                    "max_points": 27.0,
+                    "strengths": "Understood how buffer size affects context switching and data production.",
+                    "areas_for_improvement": "Provide a precise prediction for `num_full` (e.g., equal to buffer size) and explain the reasoning based on consumer sleep patterns.",
+                    "breakdown": "Reasoning: Student correctly described the impact of buffer size on producer/consumer synchronization but provided a vague prediction for `num_full` and lacked a detailed explanation for it.\n\nCorrectly explained buffer behavior (9/9). Vague `num_full` prediction (3/9). Missing explanation for prediction (0/9).",
+                    "ai_flag": null
+                },
+                "6": {
+                    "score": 26.0,
+                    "max_points": 40.0,
+                    "strengths": "Demonstrated a clear understanding of the translation procedure and correctly applied it for several addresses.",
+                    "areas_for_improvement": "Double-check PFN calculations from PDE/PTE contents and ensure correct extraction of PTE index from the virtual address.",
+                    "breakdown": "Reasoning: The student correctly translated 4 out of 8 virtual addresses. For the remaining addresses, there were errors in PFN calculation or incorrect PTE index/contents, leading to incorrect physical addresses or fault conditions.\n\nVA 5a23: Partial (2/5). VA 14ab: Correct (5/5). VA 257e: Correct (5/5). VA 7988: Partial (2/5). VA 75cf: Incorrect (0/5). VA 3350: Partial (2/5). VA 0a70: Correct (5/5). VA 55f9: Correct (5/5).",
+                    "ai_flag": null
+                }
+            },
+            "overall_feedback": "The student demonstrated a good understanding of some concepts, particularly in scheduling and basic process timing. However, there were significant issues with following specific problem parameters (Q2) and accuracy in detailed calculations (Q6). Explanations for predictions were also sometimes vague (Q5).",
+            "llm_call_time_taken": 72.84779334068298,
+            "total_time_taken": 72.85340309143066
+        }
+    ],
+    "35": [],
+    "36": [],
+    "37": [],
+    "38": [],
+    "39": [],
+    "4": [],
+    "40": [],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": []
+}
