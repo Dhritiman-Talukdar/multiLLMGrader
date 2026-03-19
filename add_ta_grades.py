@@ -19,8 +19,8 @@ import json
 import os
 
 DATASET_DIR = "test_files/dataset_os"
-INPUT_CSV   = "consolidated_results_3/grading_results.csv"
-OUTPUT_CSV  = "consolidated_results_3/grading_results_with_ta.csv"
+INPUT_CSV   = "consolidated_results_rerun_4/grading_results.csv"
+OUTPUT_CSV  = "consolidated_results_rerun_4/grading_results_with_ta.csv"
 QUESTIONS   = [1, 2, 3, 4, 5, 6]
 NUM_TAS     = 3
 
