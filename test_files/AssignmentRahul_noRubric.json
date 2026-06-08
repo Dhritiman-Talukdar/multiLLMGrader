@@ -1,0 +1,831 @@
+{
+    "id": "3b149b63-2275-4c8a-86e4-7a22d2ce7663",
+    "user_id": "TgHuQkY3QVSCtxg0l1mwWCQWXV02",
+    "title": "End Semester Examination (1st Semester) – December 2024",
+    "description": "Course Code: EL/MD-540; Course Name: Computer Application (CAD & CAM).",
+    "course_id": "859efa0a-2665-478c-9cc2-62a7655c8c4d",
+    "due_date": null,
+    "total_points": "72",
+    "total_questions": "6",
+    "status": "published",
+    "shared_count": "0",
+    "question_types": [
+        "multi-part",
+        "long-answer"
+    ],
+    "engineering_level": "undergraduate",
+    "engineering_discipline": "general",
+    "google_form_url": null,
+    "google_form_response_url": null,
+    "questions": [
+        {
+            "id": 1,
+            "code": "",
+            "type": "multi-part",
+            "order": 1,
+            "points": 12,
+            "rubric": "",
+            "hasCode": false,
+            "options": [],
+            "question": "Answer all subparts.",
+            "equations": [
+                {
+                    "id": "q1_4_eq1",
+                    "type": "inline",
+                    "latex": "3+7*2",
+                    "position": {
+                        "context": "question_text",
+                        "char_index": 54
+                    }
+                }
+            ],
+            "hasDiagram": false,
+            "outputType": "",
+            "rubricType": "per-subquestion",
+            "codeLanguage": "",
+            "subquestions": [
+                {
+                    "id": 1,
+                    "code": "",
+                    "type": "short-answer",
+                    "order": 1,
+                    "points": 1,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "Define Process Planning ?",
+                    "equations": [],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 2,
+                    "code": "",
+                    "type": "short-answer",
+                    "order": 1,
+                    "points": 1,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "What is hybrid CAPP ?",
+                    "equations": [],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 3,
+                    "code": "",
+                    "type": "short-answer",
+                    "order": 1,
+                    "points": 1,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "What is meshing in FEA ?",
+                    "equations": [],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 4,
+                    "code": "",
+                    "type": "short-answer",
+                    "order": 1,
+                    "points": 1,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "What is the output of the MATLAB command <eq q1_4_eq1> ?",
+                    "equations": [
+                        {
+                            "id": "q1_4_eq1",
+                            "type": "inline",
+                            "latex": "3+7*2",
+                            "position": {
+                                "context": "question_text",
+                                "char_index": 54
+                            }
+                        },
+                        {
+                            "id": "q1_4_step1",
+                            "type": "inline",
+                            "latex": "7\\times 2=14",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 46
+                            }
+                        },
+                        {
+                            "id": "q1_4_step2",
+                            "type": "inline",
+                            "latex": "3+14=17",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 79
+                            }
+                        },
+                        {
+                            "id": "q1_4_ans",
+                            "type": "inline",
+                            "latex": "17",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 109
+                            }
+                        }
+                    ],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 5,
+                    "code": "",
+                    "type": "short-answer",
+                    "order": 1,
+                    "points": 1,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "What does the mirror tool do and what is the requirement for mirroring ?",
+                    "equations": [],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 6,
+                    "code": "",
+                    "type": "short-answer",
+                    "order": 1,
+                    "points": 1,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "Which command clears all variables from workspace ?",
+                    "equations": [],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 7,
+                    "code": "",
+                    "type": "short-answer",
+                    "order": 1,
+                    "points": 1,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "Draw the stress-strain diagram of a tough and soft material.",
+                    "equations": [],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 8,
+                    "code": "",
+                    "type": "short-answer",
+                    "order": 1,
+                    "points": 1,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "What is 0.2% offset yield method ?",
+                    "equations": [
+                        {
+                            "id": "q1_8_eps",
+                            "type": "inline",
+                            "latex": "\\varepsilon=0.002\\;\\text{(0.2\\%)}",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 157
+                            }
+                        }
+                    ],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 9,
+                    "code": "",
+                    "type": "short-answer",
+                    "order": 1,
+                    "points": 1,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "Define Toughness ?",
+                    "equations": [],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 10,
+                    "code": "",
+                    "type": "short-answer",
+                    "order": 1,
+                    "points": 1,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "What are G and M codes ?",
+                    "equations": [],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 11,
+                    "code": "",
+                    "type": "short-answer",
+                    "order": 1,
+                    "points": 1,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "What does CNC stands for ?",
+                    "equations": [],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 12,
+                    "code": "",
+                    "type": "short-answer",
+                    "order": 1,
+                    "points": 1,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "What type of elements are used for modelling thin structures in FEA?",
+                    "equations": [],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                }
+            ],
+            "correctAnswer": "",
+            "optionalParts": false,
+            "requiredPartsCount": 12,
+            "allowMultipleCorrect": false,
+            "multipleCorrectAnswers": []
+        },
+        {
+            "id": 2,
+            "code": "",
+            "type": "multi-part",
+            "order": 2,
+            "points": 12,
+            "rubric": "",
+            "hasCode": false,
+            "options": [],
+            "question": "Answer the following (2 parts):",
+            "equations": [],
+            "hasDiagram": false,
+            "outputType": "",
+            "rubricType": "per-subquestion",
+            "codeLanguage": "",
+            "subquestions": [
+                {
+                    "id": 1,
+                    "code": "",
+                    "type": "multi-part",
+                    "order": 1,
+                    "points": 6,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "(i) A patient is given a drug where the dosage increases by 20 mg every hour, starting from the 1st hour up to the 5th hour. Write a MATLAB program that:",
+                    "equations": [],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "subquestions": [
+                        {
+                            "id": 1,
+                            "code": "",
+                            "type": "code-writing",
+                            "order": 1,
+                            "points": 3,
+                            "rubric": "",
+                            "hasCode": false,
+                            "options": [],
+                            "question": "(a) Creates a text file named dosage.txt.",
+                            "equations": [],
+                            "hasDiagram": false,
+                            "outputType": "code",
+                            "rubricType": "overall",
+                            "codeLanguage": "",
+                            "correctAnswer": "",
+                            "optionalParts": false,
+                            "requiredPartsCount": 0,
+                            "allowMultipleCorrect": false,
+                            "multipleCorrectAnswers": []
+                        },
+                        {
+                            "id": 2,
+                            "code": "",
+                            "type": "code-writing",
+                            "order": 1,
+                            "points": 3,
+                            "rubric": "",
+                            "hasCode": false,
+                            "options": [],
+                            "question": "(b) Stores the values of time (in hours) and dosage (in mg) in a tabular format using fopen, fprintf, and fclose.",
+                            "equations": [],
+                            "hasDiagram": false,
+                            "outputType": "code",
+                            "rubricType": "overall",
+                            "codeLanguage": "",
+                            "correctAnswer": "",
+                            "optionalParts": false,
+                            "requiredPartsCount": 0,
+                            "allowMultipleCorrect": false,
+                            "multipleCorrectAnswers": []
+                        }
+                    ],
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 2,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 2,
+                    "code": "",
+                    "type": "code-writing",
+                    "order": 1,
+                    "points": 6,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "(ii) A drug quantity in the body reduces to half after every 6 hours. Starting from 80 mg, use a while loop to find after how many hours the amount will become less than 1 mg?",
+                    "equations": [
+                        {
+                            "id": "q2_2_eq1",
+                            "type": "inline",
+                            "latex": "A(t)=A_0\\left(\\tfrac{1}{2}\\right)^{t/6}",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 229
+                            }
+                        },
+                        {
+                            "id": "q2_2_eq2",
+                            "type": "inline",
+                            "latex": "A(t)<1\\ \\text{mg}",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 311
+                            }
+                        },
+                        {
+                            "id": "q2_2_eq3",
+                            "type": "inline",
+                            "latex": "80\\left(\\tfrac{1}{2}\\right)^{t/6}<1",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 357
+                            }
+                        },
+                        {
+                            "id": "q2_2_eq4",
+                            "type": "inline",
+                            "latex": "t>6\\,\\frac{\\ln(80)}{\\ln(2)}",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 553
+                            }
+                        },
+                        {
+                            "id": "q2_2_eq5",
+                            "type": "inline",
+                            "latex": "t>6\\,\\frac{\\ln(80)}{\\ln(2)}\\approx 37.93\\ \\text{h}",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 618
+                            }
+                        },
+                        {
+                            "id": "q2_2_eq6",
+                            "type": "inline",
+                            "latex": "A_n=80\\left(\\tfrac{1}{2}\\right)^n",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 768
+                            }
+                        },
+                        {
+                            "id": "q2_2_eq7",
+                            "type": "inline",
+                            "latex": "A_n<1",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 820
+                            }
+                        },
+                        {
+                            "id": "q2_2_eq8",
+                            "type": "inline",
+                            "latex": "80\\left(\\tfrac{1}{2}\\right)^n<1\\iff n>\\log_2(80)",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 840
+                            }
+                        },
+                        {
+                            "id": "q2_2_eq9",
+                            "type": "inline",
+                            "latex": "n=\\lceil\\log_2(80)\\rceil=7",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 897
+                            }
+                        },
+                        {
+                            "id": "q2_2_eq10",
+                            "type": "inline",
+                            "latex": "t=6n=42\\ \\text{h}",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 927
+                            }
+                        }
+                    ],
+                    "hasDiagram": false,
+                    "outputType": "code",
+                    "rubricType": "overall",
+                    "codeLanguage": "MATLAB",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                }
+            ],
+            "correctAnswer": "",
+            "optionalParts": false,
+            "requiredPartsCount": 2,
+            "allowMultipleCorrect": false,
+            "multipleCorrectAnswers": []
+        },
+        {
+            "id": 3,
+            "code": "",
+            "type": "long-answer",
+            "order": 3,
+            "points": 12,
+            "rubric": "",
+            "hasCode": false,
+            "options": [],
+            "question": "What is CAPP? Compare Variant and Generative CAPP approaches in detail.",
+            "equations": [],
+            "hasDiagram": false,
+            "outputType": "",
+            "rubricType": "overall",
+            "codeLanguage": "",
+            "correctAnswer": "",
+            "optionalParts": false,
+            "requiredPartsCount": 0,
+            "allowMultipleCorrect": false,
+            "multipleCorrectAnswers": []
+        },
+        {
+            "id": 4,
+            "code": "",
+            "type": "long-answer",
+            "order": 4,
+            "points": 12,
+            "rubric": "",
+            "hasCode": false,
+            "options": [],
+            "question": "Explain the complete workflow of CAD \u0010 CAM \u0010 CNC in part programming.",
+            "equations": [
+                {
+                    "id": "q4_eq1",
+                    "type": "inline",
+                    "latex": "n=\\frac{1000\\,V_c}{\\pi D}\\quad(\\text{rpm})",
+                    "position": {
+                        "context": "correctAnswer",
+                        "char_index": 0
+                    }
+                },
+                {
+                    "id": "q4_eq2",
+                    "type": "inline",
+                    "latex": "V_f=f_z\\,z\\,n",
+                    "position": {
+                        "context": "correctAnswer",
+                        "char_index": 0
+                    }
+                },
+                {
+                    "id": "q4_eq3",
+                    "type": "inline",
+                    "latex": "\\mathbf{P}(t)=\\mathbf{P}_0+t\\,(\\mathbf{P}_1-\\mathbf{P}_0),\\;0\\le t\\le 1",
+                    "position": {
+                        "context": "correctAnswer",
+                        "char_index": 0
+                    }
+                }
+            ],
+            "hasDiagram": false,
+            "outputType": "",
+            "rubricType": "overall",
+            "codeLanguage": "",
+            "correctAnswer": "",
+            "optionalParts": false,
+            "requiredPartsCount": 0,
+            "allowMultipleCorrect": false,
+            "multipleCorrectAnswers": []
+        },
+        {
+            "id": 5,
+            "code": "",
+            "type": "long-answer",
+            "order": 5,
+            "points": 12,
+            "rubric": "",
+            "hasCode": false,
+            "options": [],
+            "question": "Explain the complete step-by-step process of Finite Element Analysis.",
+            "equations": [
+                {
+                    "id": "q5_eq1",
+                    "type": "inline",
+                    "latex": "\\mathbf{K}\\,\\mathbf{u}=\\mathbf{f}",
+                    "position": {
+                        "context": "correctAnswer",
+                        "char_index": 0
+                    }
+                },
+                {
+                    "id": "q5_eq2",
+                    "type": "inline",
+                    "latex": "\\mathbf{k}_e=\\int_{V_e} \\mathbf{B}^T\\,\\mathbf{D}\\,\\mathbf{B}\\,\\mathrm{d}V",
+                    "position": {
+                        "context": "correctAnswer",
+                        "char_index": 0
+                    }
+                },
+                {
+                    "id": "q5_eq3",
+                    "type": "inline",
+                    "latex": "\\mathbf{u}(\\mathbf{x})=\\mathbf{N}(\\mathbf{x})\\,\\mathbf{d}",
+                    "position": {
+                        "context": "correctAnswer",
+                        "char_index": 0
+                    }
+                },
+                {
+                    "id": "q5_eq4",
+                    "type": "inline",
+                    "latex": "\\boldsymbol{\\varepsilon}=\\mathbf{B}\\,\\mathbf{d}",
+                    "position": {
+                        "context": "correctAnswer",
+                        "char_index": 0
+                    }
+                },
+                {
+                    "id": "q5_eq5",
+                    "type": "inline",
+                    "latex": "\\Pi(\\mathbf{u})=\\tfrac{1}{2}\\,\\mathbf{u}^T\\mathbf{K}\\,\\mathbf{u}-\\mathbf{u}^T\\mathbf{f}",
+                    "position": {
+                        "context": "correctAnswer",
+                        "char_index": 0
+                    }
+                }
+            ],
+            "hasDiagram": false,
+            "outputType": "",
+            "rubricType": "overall",
+            "codeLanguage": "",
+            "correctAnswer": "",
+            "optionalParts": false,
+            "requiredPartsCount": 0,
+            "allowMultipleCorrect": false,
+            "multipleCorrectAnswers": []
+        },
+        {
+            "id": 6,
+            "code": "",
+            "type": "multi-part",
+            "order": 6,
+            "points": 12,
+            "rubric": "",
+            "hasCode": false,
+            "options": [],
+            "question": "Answer the following (2 parts):",
+            "equations": [],
+            "hasDiagram": false,
+            "outputType": "",
+            "rubricType": "per-subquestion",
+            "codeLanguage": "",
+            "subquestions": [
+                {
+                    "id": 1,
+                    "code": "",
+                    "type": "diagram-analysis",
+                    "order": 1,
+                    "points": 8,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "(i) Draw the stress strain diagram of a mild steel describing each points.",
+                    "equations": [
+                        {
+                            "id": "q61_eq1",
+                            "type": "inline",
+                            "latex": "\\sigma=\\frac{P}{A_0}",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 0
+                            }
+                        },
+                        {
+                            "id": "q61_eq2",
+                            "type": "inline",
+                            "latex": "\\varepsilon=\\frac{\\Delta L}{L_0}",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 0
+                            }
+                        },
+                        {
+                            "id": "q61_eq3",
+                            "type": "inline",
+                            "latex": "\\sigma=E\\,\\varepsilon",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 0
+                            }
+                        },
+                        {
+                            "id": "q61_eq4",
+                            "type": "inline",
+                            "latex": "\\sigma_{\\text{UTS}}=\\max\\,\\sigma_{\\text{eng}}",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 0
+                            }
+                        },
+                        {
+                            "id": "q61_eq5",
+                            "type": "inline",
+                            "latex": "\\sigma_{\\text{true}}=\\frac{P}{A_{\\text{inst}}}",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 0
+                            }
+                        },
+                        {
+                            "id": "q61_eq6",
+                            "type": "inline",
+                            "latex": "\\varepsilon_{\\text{true}}=\\ln\\!\\left(\\frac{L}{L_0}\\right)",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 0
+                            }
+                        },
+                        {
+                            "id": "q61_eq7",
+                            "type": "inline",
+                            "latex": "\\%\\,\\text{Elong.}=\\frac{L_f-L_0}{L_0}\\times 100\\%",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 0
+                            }
+                        },
+                        {
+                            "id": "q61_eq8",
+                            "type": "inline",
+                            "latex": "\\%\\,\\text{RA}=\\frac{A_0-A_f}{A_0}\\times 100\\%",
+                            "position": {
+                                "context": "correctAnswer",
+                                "char_index": 0
+                            }
+                        }
+                    ],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                },
+                {
+                    "id": 2,
+                    "code": "",
+                    "type": "diagram-analysis",
+                    "order": 1,
+                    "points": 4,
+                    "rubric": "",
+                    "hasCode": false,
+                    "options": [],
+                    "question": "(ii) Draw the stress-strain diagram of ceramic, polymer, bone and metals.",
+                    "equations": [],
+                    "hasDiagram": false,
+                    "outputType": "",
+                    "rubricType": "overall",
+                    "codeLanguage": "",
+                    "correctAnswer": "",
+                    "optionalParts": false,
+                    "requiredPartsCount": 0,
+                    "allowMultipleCorrect": false,
+                    "multipleCorrectAnswers": []
+                }
+            ],
+            "correctAnswer": "",
+            "optionalParts": false,
+            "requiredPartsCount": 2,
+            "allowMultipleCorrect": false,
+            "multipleCorrectAnswers": []
+        }
+    ],
+    "created_at": "2026-03-08T12:10:50.508044",
+    "updated_at": "2026-03-08T12:10:50.508061"
+}
