@@ -1198,8 +1198,11 @@ class LLMGrader:
         overall_feedback = ""
 
         try:
-            # If it's not JSON (our new Gemini format), parse using Regex
-            if self.provider == "gemini":
+            # Gemini's grade_submission path uses a bracket-tag format ([Q:id]...[/Q])
+            # to avoid JSON truncation; grade_pdf_direct sends the same JSON "grades"
+            # prompt to every provider, so only take the regex path when the response
+            # actually looks like bracket-tag output rather than assuming by provider.
+            if self.provider == "gemini" and "[Q:" in response_text:
                 import re
                 feedback_by_question = {}
                 

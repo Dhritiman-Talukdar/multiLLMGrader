@@ -9,3 +9,4 @@ google-genai>=1.64.0
 requests>=2.32.4
 pandas>=2.0.3
 python-dotenv>=0.21.0
+krippendorff==0.8.2
