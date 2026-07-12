@@ -1,0 +1,8 @@
+model,n,mean_bias,cohens_d,t_p,wilcoxon_p,bias_sig
+claude-opus-4-6,25,-0.372,-1.31,0.0,0.0,YES
+claude-sonnet-4-6,25,-0.373,-1.348,0.0,0.0001,YES
+gemini-2.5-flash,25,-0.405,-1.054,0.0,0.0,YES
+gpt-4o,25,-0.493,-1.857,0.0,0.0,YES
+gpt-5,25,-0.524,-1.263,0.0,0.0,YES
+gemini-2.5-pro,25,-0.397,-0.88,0.0002,0.0003,YES
+claude-haiku-4-5-20251001,25,-0.265,-0.809,0.0005,0.001,YES

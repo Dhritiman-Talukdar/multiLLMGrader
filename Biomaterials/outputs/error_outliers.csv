@@ -1,0 +1,4 @@
+model,pdf_id,question,error,consensus
+gemini-2.5-flash,1,2,-1.33,1.67
+claude-opus-4-6,1,4,-1.0,2.0
+claude-opus-4-6,3,2,-1.0,2.0
