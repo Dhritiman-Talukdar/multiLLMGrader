@@ -1,0 +1,26 @@
+What needs your attention
+§2 Related Work is an argument skeleton with 15 [CITE: ...] markers. I invented no references. The structure and the "gap" paragraph are written; you slot in the literature.
+§9 Threats contains three confounds I found in grading_service.py that you may not have been tracking: Gemini gets a different prompt (delimiter format, "under 30 words per field") than OpenAI/Anthropic get (JSON); GPT-5 runs at reasoning_effort="high" with no temperature while everything else is at 0.1, so its run-to-run SD isn't measured comparably; and max_tokens is 2000 for Anthropic/Gemini vs 16384 for GPT-4o. The first is the serious one — Gemini's cross-model numbers are confounded. Reviewers will ask.
+Untested claim flagged in §8.3 — I noted the feedback-prose quality is unevaluated (you measured scores only) rather than letting the paper imply otherwise.
+Cost data is absent; §9 says so.
+
+
+
+Your Lit/ folder changed the paper's framing
+The 10 PDFs turned out to be more useful than the web search, because together they show the literature contradicts itself, and your data explains why. That's now the paper's strongest hook.
+
+Verdict	Papers
+LLM ≥ human	Gobrecht (model beats certified re-graders by 44% on median abs. error), Tang (parity with human IRR), Bernik (Pearson 0.91), Kortemeyer (R²=0.84), Henkel (κ 0.70 vs human 0.75), Poličar
+LLM ≪ human	Mathew (QWK <0.30 vs human 0.72), Caraeni ("too low for real-world"), Lundgren (low IRR)
+Flodén is the key find. He graded 463 responses ×3 runs — nearly your design — and wrote that his model's discrepancies might be no worse than "two different human graders." He states your hypothesis explicitly and cannot test it, because he had one grader per exam. Your three-grader panels are exactly what's needed to answer it. That's now the gap statement in §1 and §2.5, and it's far stronger than the generic "nobody combined these literatures" I had.
+
+What I changed as a result
+New §8.5 "Reconciling the contradictory literature" — you reproduce both verdicts within one study: same models, same protocol, only the graders differ, and the best model moves from 2.80× to 1.80× outside human variability. The argument is that the field's disagreement is substantially about reference quality, not model capability. I marked this as an explanation consistent with your data, not a demonstrated one, and stated the meta-analytic prediction that would test it.
+Contributions went from three to four, with reconciliation added.
+Abstract and §1 rewritten to open on the contradiction rather than "evidence is largely favourable" — which the Lit/ folder shows is not true.
+§2.5 now concedes that ceiling-referenced comparison isn't novel (Gobrecht, Henkel, Tang, Mathew, Zheng all do it) and narrows your claim to the insertion test, the same-data demonstration, and the two-ceiling design.
+Two things to note
+Bernik found GPT-4 best; you found Claude Opus best. Different model generations (GPT-4-turbo/Claude 3/Gemini 1.5 vs. your 2025–26 frontier set), so not a contradiction — but a reviewer may ask, and it's worth a sentence if you want to preempt it.
+
+Reference [15] (ProSA, prompt sensitivity) needs its author list. I confirmed title, venue (Findings of EMNLP 2024), and arXiv ID but not the authors, so I marked it [AUTHORS — VERIFY] rather than guess. Page numbers for [7] Poličar and [22] Brennan also need completing from the publisher record. Everything else was verified against your PDFs or the publisher/arXiv record — a verification note at the end of the reference list says exactly this.
+

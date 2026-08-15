@@ -1,0 +1,173 @@
+"""Generate the two cross-dataset figures used in the manuscript.
+
+Fig. 6 — ICC(2,1) when each LLM is inserted as an additional rater, against the
+         human-only baseline, for both courses.
+Fig. 9 — MAE-to-human-ceiling ratio per model, OS vs Biomaterials.
+
+Both read the CSVs already produced by the two analysis notebooks; nothing is
+recomputed here. Run from the repository root:
+
+    python docs/paper/make_paper_figures.py
+"""
+import os
+
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import pandas as pd
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+OUT_DIR = os.path.join(ROOT, "docs", "paper", "figures")
+os.makedirs(OUT_DIR, exist_ok=True)
+
+# Human-only baselines reported by the two notebooks.
+OS_HUMAN_ICC = 0.956
+BIO_HUMAN_ICC = 0.504
+OS_HUMAN_MAE = 1.113
+BIO_HUMAN_MAE = 0.227
+
+# The Biomaterials analysis keys models by raw API id; the OS analysis uses
+# display labels. Map both onto one canonical label.
+CANONICAL = {
+    "claude-opus-4-6": "Claude Opus",
+    "claude-sonnet-4-6": "Claude Sonnet",
+    "claude-haiku-4-5-20251001": "Claude Haiku",
+    "gemini-2.5-pro": "Gemini 2.5 Pro",
+    "gemini-2.5-flash": "Gemini 2.5 Flash",
+    "gpt-5": "GPT-5",
+    "gpt-4o": "GPT-4o",
+}
+
+# Fixed display order so the two panels stay visually comparable.
+ORDER = [
+    "Claude Opus",
+    "Claude Sonnet",
+    "Gemini 2.5 Pro",
+    "Gemini 2.5 Flash",
+    "Claude Haiku",
+    "GPT-5",
+    "GPT-4o",
+]
+
+OS_COLOR = "#2c6fbb"
+BIO_COLOR = "#d97a34"
+
+
+def load_frames():
+    os_df = pd.read_csv(
+        os.path.join(ROOT, "Grading_Dataset_OS", "outputs", "model_ranking_human_ceiling.csv")
+    ).set_index("model")
+
+    bio_icc = pd.read_csv(
+        os.path.join(ROOT, "Biomaterials", "outputs", "icc_4th_grader_panel.csv")
+    )
+    bio_icc["model"] = bio_icc["model"].map(CANONICAL)
+    bio_icc = bio_icc.set_index("model")
+
+    bio_rank = pd.read_csv(
+        os.path.join(ROOT, "Biomaterials", "outputs", "model_ranking.csv"), index_col=0
+    )
+    bio_rank.index = bio_rank.index.map(CANONICAL)
+
+    return os_df, bio_icc, bio_rank
+
+
+def figure_6(os_df, bio_icc):
+    """ICC as a 4th rater, both courses, each against its own human baseline."""
+    fig, axes = plt.subplots(1, 2, figsize=(11, 4.6))
+
+    panels = [
+        (axes[0], os_df["ICC_as_4th"], OS_HUMAN_ICC, OS_COLOR,
+         "(a) Operating Systems", "Human-only panel = 0.956"),
+        (axes[1], bio_icc["ICC21_with_LLM"], BIO_HUMAN_ICC, BIO_COLOR,
+         "(b) Biomaterials", "Human-only panel = 0.504"),
+    ]
+
+    for ax, series, baseline, color, title, baseline_label in panels:
+        vals = series.reindex(ORDER)
+        ypos = range(len(ORDER))
+        ax.barh(ypos, vals.values, color=color, alpha=0.85, height=0.65)
+        ax.axvline(baseline, color="black", linestyle="--", linewidth=1.4, label=baseline_label)
+        ax.set_yticks(list(ypos))
+        ax.set_yticklabels(ORDER, fontsize=9)
+        ax.invert_yaxis()
+        ax.set_xlim(0, 1.0)
+        ax.set_xlabel("ICC(2,1) with the LLM inserted as a 4th rater")
+        ax.set_title(title, fontsize=11, fontweight="bold")
+        ax.legend(loc="lower right", fontsize=8, frameon=True)
+        ax.grid(axis="x", alpha=0.3, linestyle=":")
+        for i, v in enumerate(vals.values):
+            ax.text(v + 0.015, i, f"{v:.3f}", va="center", fontsize=8)
+
+    fig.suptitle(
+        "Adding any LLM to the human panel lowers inter-rater reliability in both courses",
+        fontsize=12, fontweight="bold",
+    )
+    fig.tight_layout(rect=(0, 0, 1, 0.94))
+    path = os.path.join(OUT_DIR, "fig6_icc_as_fourth_rater.png")
+    fig.savefig(path, dpi=200)
+    plt.close(fig)
+    return path
+
+
+def figure_9(os_df, bio_rank):
+    """How many times the human-human disagreement each model's error represents."""
+    os_ratio = os_df["human_ratio"].reindex(ORDER)
+    bio_ratio = (bio_rank["MAE_vs_humans"] / BIO_HUMAN_MAE).reindex(ORDER)
+
+    x = range(len(ORDER))
+    width = 0.38
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.bar([i - width / 2 for i in x], os_ratio.values, width,
+           label="Operating Systems (ceiling = 1.113 pts/question)",
+           color=OS_COLOR, alpha=0.88)
+    ax.bar([i + width / 2 for i in x], bio_ratio.values, width,
+           label="Biomaterials (ceiling = 0.227 pts/question)",
+           color=BIO_COLOR, alpha=0.88)
+
+    ax.axhline(1.0, color="black", linestyle="--", linewidth=1.5)
+    ax.text(len(ORDER) - 0.45, 1.06, "human ceiling", fontsize=9,
+            ha="right", style="italic")
+
+    for i, (a, b) in enumerate(zip(os_ratio.values, bio_ratio.values)):
+        ax.text(i - width / 2, a + 0.06, f"{a:.2f}", ha="center", fontsize=8)
+        ax.text(i + width / 2, b + 0.06, f"{b:.2f}", ha="center", fontsize=8)
+
+    ax.set_xticks(list(x))
+    ax.set_xticklabels(ORDER, fontsize=9, rotation=15, ha="right")
+    ax.set_ylabel("Model MAE vs. humans  /  human-human MAE")
+    ax.set_title(
+        "No model reaches human variability in either course",
+        fontsize=12, fontweight="bold",
+    )
+    ax.legend(fontsize=9, loc="upper left")
+    ax.grid(axis="y", alpha=0.3, linestyle=":")
+    ax.set_ylim(0, max(os_ratio.max(), bio_ratio.max()) * 1.18)
+
+    fig.tight_layout()
+    path = os.path.join(OUT_DIR, "fig9_cross_domain_ceiling_ratio.png")
+    fig.savefig(path, dpi=200)
+    plt.close(fig)
+    return path
+
+
+def main():
+    os_df, bio_icc, bio_rank = load_frames()
+    print("Fig 6 ->", figure_6(os_df, bio_icc))
+    print("Fig 9 ->", figure_9(os_df, bio_rank))
+
+    # Echo the numbers that go into the manuscript text, so the prose can be
+    # checked against the figures without re-running the notebooks.
+    ratio = pd.DataFrame({
+        "OS_ratio": os_df["human_ratio"].reindex(ORDER),
+        "BIO_ratio": (bio_rank["MAE_vs_humans"] / BIO_HUMAN_MAE).reindex(ORDER),
+        "OS_ICC_4th": os_df["ICC_as_4th"].reindex(ORDER),
+        "BIO_ICC_4th": bio_icc["ICC21_with_LLM"].reindex(ORDER),
+    })
+    print(ratio.round(3).to_string())
+
+
+if __name__ == "__main__":
+    main()
