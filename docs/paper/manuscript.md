@@ -496,7 +496,7 @@ every one of these models is a *worse-than-average* member of this grading team,
 replacing a TA with any of them measurably degrades the consistency of grading students
 receive.
 
-*[Figure 6: `docs/paper/figures/fig6_icc_as_fourth_rater.png` — panel (a).]*
+*[Figure 3: `docs/paper/figures/fig3_icc_as_fourth_rater_os.png`]*
 
 ### 5.5 The within-human-variability test
 
@@ -516,7 +516,7 @@ TA-TA ceiling = 1.113.**
 Zero of seven models fall within human variability. The gap is not marginal — the best
 model would need to reduce its disagreement by 64% to reach the ceiling.
 
-*[Figure 3: `Grading_Dataset_OS/outputs/9_5_within_human_variability.png`]*
+*[Figure 4: `Grading_Dataset_OS/outputs/9_5_within_human_variability.png`]*
 
 ### 5.6 Where the models fail, and how noisily
 
@@ -526,7 +526,7 @@ not grade — is the hardest for every model: Claude Haiku's MAE on Q6 is 7.76 p
 The pattern is consistent with the pre-LLM autograding literature: constrained items
 automate well, open-ended synthesis does not.
 
-*[Figure 4: `Grading_Dataset_OS/outputs/8_2_per_question_mae_heatmap.png`]*
+*[Figure 5: `Grading_Dataset_OS/outputs/8_2_per_question_mae_heatmap.png`]*
 
 **Table 5 — Run-to-run standard deviation (points per question, mean over all
 student-question pairs).**
@@ -547,7 +547,7 @@ points across a six-question assignment. The models with the lowest noise are th
 also lead on accuracy, but the ordering is not identical: GPT-4o is mid-pack on noise
 despite being last on accuracy, and Gemini 2.5 Pro is third on accuracy but second-noisiest.
 
-*[Figure 5: `Grading_Dataset_OS/outputs/9_6_run_to_run_noise.png`]*
+*[Figure 6: `Grading_Dataset_OS/outputs/9_6_run_to_run_noise.png`]*
 
 ### 5.7 What the conventional analysis would have concluded
 
@@ -659,7 +659,7 @@ Claude Haiku 0.397, GPT-5 0.347, GPT-4o 0.342 — drops of 0.077 to 0.161.
 The verdict matches Operating Systems: no model preserves panel reliability, even against a
 panel that is itself only moderately reliable.
 
-*[Figure 6: `docs/paper/figures/fig6_icc_as_fourth_rater.png` — panel (b).]*
+*[Figure 9: `docs/paper/figures/fig9_icc_as_fourth_rater_bio.png`]*
 
 On the within-human test, model MAE against individual humans ranges from 0.399 (Claude
 Haiku) to 0.554 (GPT-5), against a ceiling of 0.227 — ceiling ratios of 1.76x to 2.44x.
@@ -733,7 +733,7 @@ disagreement.**
 | GPT-5 | 3.48x | 2.44x |
 | GPT-4o | 4.34x | 2.31x |
 
-*[Figure 9: `docs/paper/figures/fig9_cross_domain_ceiling_ratio.png`]*
+*[Figure 10: `docs/paper/figures/fig10_cross_domain_ceiling_ratio.png`]*
 
 Every bar in both courses is above 1.0. The ratios are *lower* in Biomaterials not because
 the models grade it better in absolute terms — they do not — but because the humans grade
@@ -776,7 +776,7 @@ delivers the best accuracy at roughly 40% of GPT-5's latency. For a 40-student a
 even the slowest configuration completes a full grading pass in under 90 minutes
 unattended, so latency is unlikely to be the binding constraint in practice.
 
-*[Figure 10: `Grading_Dataset_OS/outputs/4_6_latency_boxplot.png`]*
+*[Figure 11: `Grading_Dataset_OS/outputs/4_6_latency_boxplot.png`]*
 
 ---
 

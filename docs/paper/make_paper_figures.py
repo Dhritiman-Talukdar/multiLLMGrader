@@ -73,42 +73,63 @@ def load_frames():
     return os_df, bio_icc, bio_rank
 
 
-def figure_6(os_df, bio_icc):
-    """ICC as a 4th rater, both courses, each against its own human baseline."""
-    fig, axes = plt.subplots(1, 2, figsize=(11, 4.6))
+def _icc_panel(series, baseline, color, course, filename):
+    """One course's insertion-test result as a standalone figure.
 
-    panels = [
-        (axes[0], os_df["ICC_as_4th"], OS_HUMAN_ICC, OS_COLOR,
-         "(a) Operating Systems", "Human-only panel = 0.956"),
-        (axes[1], bio_icc["ICC21_with_LLM"], BIO_HUMAN_ICC, BIO_COLOR,
-         "(b) Biomaterials", "Human-only panel = 0.504"),
-    ]
+    Each course gets its own file: the manuscript cites this figure in that
+    course's results section, and a shared two-panel figure would print the
+    other course's results there too.
+    """
+    vals = series.reindex(ORDER)
+    ypos = range(len(ORDER))
 
-    for ax, series, baseline, color, title, baseline_label in panels:
-        vals = series.reindex(ORDER)
-        ypos = range(len(ORDER))
-        ax.barh(ypos, vals.values, color=color, alpha=0.85, height=0.65)
-        ax.axvline(baseline, color="black", linestyle="--", linewidth=1.4, label=baseline_label)
-        ax.set_yticks(list(ypos))
-        ax.set_yticklabels(ORDER, fontsize=9)
-        ax.invert_yaxis()
-        ax.set_xlim(0, 1.0)
-        ax.set_xlabel("ICC(2,1) with the LLM inserted as a 4th rater")
-        ax.set_title(title, fontsize=11, fontweight="bold")
-        ax.legend(loc="lower right", fontsize=8, frameon=True)
-        ax.grid(axis="x", alpha=0.3, linestyle=":")
-        for i, v in enumerate(vals.values):
-            ax.text(v + 0.015, i, f"{v:.3f}", va="center", fontsize=8)
+    fig, ax = plt.subplots(figsize=(7.2, 4.3))
+    ax.barh(ypos, vals.values, color=color, alpha=0.85, height=0.65)
+    ax.axvline(baseline, color="black", linestyle="--", linewidth=1.5)
+    ax.set_yticks(list(ypos))
+    ax.set_yticklabels(ORDER, fontsize=9)
+    ax.invert_yaxis()
 
-    fig.suptitle(
-        "Adding any LLM to the human panel lowers inter-rater reliability in both courses",
-        fontsize=12, fontweight="bold",
+    # Scale to this course's own baseline so the dashed line sits in a
+    # comparable position across the two figures.
+    ax.set_xlim(0, baseline * 1.18)
+    ax.set_xlabel("ICC(2,1) with the LLM inserted as a 4th rater")
+    ax.set_title(
+        f"{course}: every model lowers panel reliability",
+        fontsize=11.5, fontweight="bold",
     )
-    fig.tight_layout(rect=(0, 0, 1, 0.94))
-    path = os.path.join(OUT_DIR, "fig6_icc_as_fourth_rater.png")
+    ax.grid(axis="x", alpha=0.3, linestyle=":")
+
+    # Label the baseline on the line itself; a legend box collides with the
+    # in-bar value labels wherever it is placed.
+    ax.text(
+        baseline + baseline * 0.022, (len(ORDER) - 1) / 2,
+        f"human-only panel = {baseline:.3f}",
+        rotation=90, va="center", ha="left", fontsize=8.5, style="italic",
+    )
+
+    # Labels sit inside the bars: outside, they would run across the baseline.
+    for i, v in enumerate(vals.values):
+        pct = 100 * v / baseline
+        ax.text(v - baseline * 0.015, i, f"{v:.3f}   {pct:.0f}% of ceiling",
+                va="center", ha="right", fontsize=8.5,
+                color="white", fontweight="bold")
+
+    fig.tight_layout()
+    path = os.path.join(OUT_DIR, filename)
     fig.savefig(path, dpi=200)
     plt.close(fig)
     return path
+
+
+def figure_icc_os(os_df):
+    return _icc_panel(os_df["ICC_as_4th"], OS_HUMAN_ICC, OS_COLOR,
+                      "Operating Systems", "fig3_icc_as_fourth_rater_os.png")
+
+
+def figure_icc_bio(bio_icc):
+    return _icc_panel(bio_icc["ICC21_with_LLM"], BIO_HUMAN_ICC, BIO_COLOR,
+                      "Biomaterials", "fig9_icc_as_fourth_rater_bio.png")
 
 
 def figure_9(os_df, bio_rank):
@@ -147,7 +168,7 @@ def figure_9(os_df, bio_rank):
     ax.set_ylim(0, max(os_ratio.max(), bio_ratio.max()) * 1.18)
 
     fig.tight_layout()
-    path = os.path.join(OUT_DIR, "fig9_cross_domain_ceiling_ratio.png")
+    path = os.path.join(OUT_DIR, "fig10_cross_domain_ceiling_ratio.png")
     fig.savefig(path, dpi=200)
     plt.close(fig)
     return path
@@ -155,8 +176,9 @@ def figure_9(os_df, bio_rank):
 
 def main():
     os_df, bio_icc, bio_rank = load_frames()
-    print("Fig 6 ->", figure_6(os_df, bio_icc))
-    print("Fig 9 ->", figure_9(os_df, bio_rank))
+    print("Fig 3  ->", figure_icc_os(os_df))
+    print("Fig 9  ->", figure_icc_bio(bio_icc))
+    print("Fig 10 ->", figure_9(os_df, bio_rank))
 
     # Echo the numbers that go into the manuscript text, so the prose can be
     # checked against the figures without re-running the notebooks.
