@@ -132,6 +132,42 @@ def build_markdown(source: str) -> Path:
     return out
 
 
+# TeX has no breakpoints inside \texttt, so a 54-character path like
+# Grading_Dataset_OS/llm_vs_human_grading_analysis.ipynb overruns the right
+# margin instead of wrapping (worst in Reproducibility, which is almost all
+# paths). Emit those spans as raw \texttt with \allowbreak after each
+# separator: breaks land at / _ - . and never insert a hyphen, so a path
+# broken across lines is still copy-pasteable. PDF only -- the HTML wraps
+# these already via overflow-wrap, and build/manuscript.md stays clean
+# Markdown for GitHub.
+TEX_SPECIALS = {
+    "\\": r"\textbackslash{}", "{": r"\{", "}": r"\}", "$": r"\$",
+    "&": r"\&", "#": r"\#", "^": r"\textasciicircum{}", "_": r"\_",
+    "~": r"\textasciitilde{}", "%": r"\%",
+}
+BREAK_AFTER = set("/_-.")
+INLINE_CODE = re.compile(r"`([^`\n]+)`")
+
+
+def breakable_tex(code: str) -> str:
+    out = []
+    for char in code:
+        out.append(TEX_SPECIALS.get(char, char))
+        if char in BREAK_AFTER:
+            out.append(r"\allowbreak{}")
+    return r"\texttt{" + "".join(out) + "}"
+
+
+def make_paths_breakable(markdown: str) -> str:
+    def swap(match):
+        code = match.group(1)
+        if len(code) > 18 and any(c in code for c in "/_"):
+            return breakable_tex(code)
+        return match.group(0)
+
+    return INLINE_CODE.sub(swap, markdown)
+
+
 def build_pdf(markdown_path: Path) -> Path | None:
     # xelatex, not pdflatex: the manuscript uses real Unicode throughout
     # (U+2212 minus in every negative delta, en dashes in Bland-Altman), which
@@ -147,9 +183,14 @@ def build_pdf(markdown_path: Path) -> Path | None:
         r"\setkeys{Gin}{width=\linewidth,keepaspectratio}"
         "\n"
     )
+    tex_source = BUILD / "_pdf-source.md"
+    tex_source.write_text(make_paths_breakable(markdown_path.read_text()))
+
     result = subprocess.run(
         [
-            "pandoc", str(markdown_path), "-f", "gfm", "-o", str(out),
+            # pandoc's own Markdown reader, not gfm: gfm rejects raw_tex, which
+            # the breakable-path spans above depend on. Pipe tables work in both.
+            "pandoc", str(tex_source), "-f", "markdown", "-o", str(out),
             f"--pdf-engine={Path(engine).name}",
             f"--resource-path={REPO_ROOT}",
             f"--include-in-header={header}",
@@ -161,6 +202,7 @@ def build_pdf(markdown_path: Path) -> Path | None:
         capture_output=True, text=True, cwd=REPO_ROOT,
     )
     header.unlink()
+    tex_source.unlink()
     if result.returncode != 0:
         print(f"  pdf skipped -- pandoc/pdflatex error:\n{result.stderr.strip()[:800]}")
         return None
