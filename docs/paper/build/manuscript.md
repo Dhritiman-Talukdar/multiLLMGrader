@@ -1018,7 +1018,7 @@ programming education: Accuracy, efficiency, and feedback in student assignment 
 
 [7] P. G. Poličar, M. Špendl, T. Curk, and B. Zupan, "Automated assignment grading with large
 language models: Insights from a bioinformatics course," *Bioinformatics*, vol. 41,
-suppl. 1, pp. i21–, 2025. doi: 10.1093/bioinformatics/btaf196
+suppl. 1, pp. i21–i29, Jul. 2025. doi: 10.1093/bioinformatics/btaf196
 
 [8] O. Henkel, A. Boxer, L. Hills, and B. Roberts, "Can large language models make the grade?
 An empirical study evaluating LLMs' ability to mark short answer questions in K-12 education,"
@@ -1044,9 +1044,9 @@ feedback and efficiency," IntechOpen, 2024. doi: 10.5772/intechopen.1005025
 comparative study on grading methods and the technology acceptance model," in *Association of
 Marketing Theory and Practice Proceedings 2025*, art. 17, 2025.
 
-[15] [AUTHORS: VERIFY], "ProSA: Assessing and understanding the prompt sensitivity of LLMs,"
-in *Findings of the Association for Computational Linguistics: EMNLP 2024*, 2024.
-arXiv:2410.12405
+[15] J. Zhuo, S. Zhang, X. Fang, H. Duan, D. Lin, and K. Chen, "ProSA: Assessing and
+understanding the prompt sensitivity of LLMs," in *Findings of the Association for
+Computational Linguistics: EMNLP 2024*, 2024. arXiv:2410.12405
 
 [16] R. Stureborg, D. Alikaniotis, and Y. Suhara, "Large language models are inconsistent and
 biased evaluators," arXiv:2405.01724, 2024.
@@ -1070,12 +1070,12 @@ Behavioral Measurements: Theory of Generalizability for Scores and Profiles*. Ne
 1972.
 
 [22] R. L. Brennan, "Performance assessments from the perspective of generalizability theory,"
-*Applied Psychological Measurement*, vol. 24, no. 4, 2000.
+*Applied Psychological Measurement*, vol. 24, no. 4, pp. 339–353, 2000.
 doi: 10.1177/01466210022031796
 
 ---
-
-> **Verification note.** All references except [15] were confirmed against the source PDF in
-> `Lit/` or the publisher/arXiv record. Reference [15] needs its author list completed. Its
-> title, venue, and arXiv identifier are confirmed; the authors were not verified. Page
-> numbers for [7] and [22] should be completed from the publisher record.
+<!-- 
+> **Verification note.** Every reference was confirmed against the source PDF in `Lit/`, an
+> author-supplied record, or the publisher/arXiv record. Reference [15] cites the ACL
+> Anthology version; its page numbers can be added from that record if the target venue
+> requires them for conference papers. -->
